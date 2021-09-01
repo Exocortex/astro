@@ -1,0 +1,25 @@
+.content {
+  text-align: center;
+  margin: 10px;
+}
+/* sc-bCwfaz hPNTLI threekit-react tk-input-buttons hoodie-finish tk-buttons-content */
+
+.tk-buttons-content{
+  justify-content: center;
+}
+.App-logo {
+  height: 40vmin;
+}
+
+#header{
+  background: #ffffff;
+  background-image: url(https://tk-dev-forum.s3.dualstack.us-east-1.amazonaws.com/original/1X/17d4a1229e5c54121b05fafbaae464a0c2f2e10f.png);
+  background-repeat: no-repeat;
+  background-size: auto 30px;
+  background-position-y: center;
+  background-position-x: 30px;
+}
+
+.App-link {
+  color: #09d3ac;
+}
