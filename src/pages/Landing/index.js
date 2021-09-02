@@ -24,9 +24,16 @@ function Landing (props) {
     zip: undefined,
     vip: undefined,
   })
+  const [inventory, setInventory] = useState([])
   useEffect(() => {
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })
+    fetch('https://astro-api.demo.threekit.com/get-inventory', {
+      headers: { 'Content-Type': 'application/json',
+     'Access-Control-Allow-Origin': '*'},
+    })
+      .then(response => response.json())
+      .then(data => console.log(data))
   }, [])
 
   function handleChange (e) {
