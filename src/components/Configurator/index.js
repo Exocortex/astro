@@ -10,7 +10,7 @@ import {
   Buttons,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
-function Configurator (props) {
+function Configurator(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
 
@@ -21,14 +21,14 @@ function Configurator (props) {
           <div
             style={{
               margin: 'auto',
-            
+
             }}
           >
-              {props.current == 1 ? <Buttons title={' '} attribute='Hoodie Finish' /> : null}
-            
+            {props.current == 1 ? <Buttons title={' '} attribute='Hoodie Finish' /> : null}
+
           </div>
-          <Player style={{ height: '50vh' }} />
-      
+          <Player height="50vh" />
+
         </div>
       </div>
     </div>
