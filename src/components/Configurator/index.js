@@ -11,7 +11,7 @@ import {
   Buttons,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
-function Configurator (props) {
+function Configurator(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
 

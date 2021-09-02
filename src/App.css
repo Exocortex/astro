@@ -10,14 +10,14 @@
 .bsXUgw{
   justify-content: center;
 }
-.tk-buttons-content{
+.tk-buttons-content {
   justify-content: center;
 }
 .App-logo {
   height: 40vmin;
 }
 
-#header{
+#header {
   background: #ffffff;
   background-image: url(https://tk-dev-forum.s3.dualstack.us-east-1.amazonaws.com/original/1X/17d4a1229e5c54121b05fafbaae464a0c2f2e10f.png);
   background-repeat: no-repeat;
@@ -28,4 +28,19 @@
 
 .App-link {
   color: #09d3ac;
+}
+.tk-player {
+  margin: auto;
+  width: 70vh !important;
+  height: 70vh !important;
+  min-height: 0px !important;
+}
+
+.player___25Zg2 {
+  height: 100% !important;
+}
+
+#threekit-player {
+  min-height: 0px !important;
+  height: 100% !important;
 }
