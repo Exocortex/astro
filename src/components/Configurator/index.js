@@ -3,7 +3,8 @@ import { Input, Button } from 'antd'
 
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
-
+import { Tabs } from 'threekit/components'
+const { TabPane } = Tabs
 import {
   Player,
   Form,
@@ -21,14 +22,25 @@ function Configurator (props) {
           <div
             style={{
               margin: 'auto',
-            
             }}
           >
-              {props.current == 1 ? <Buttons title={' '} attribute='Hoodie Finish' /> : null}
-            
+            {props.current == 1 ? (
+              <div>
+
+                <Tabs>
+                  <TabPane label='Color'>
+                    <Buttons title={' '} attribute='Color' />
+                    </TabPane>
+                  <TabPane label='Logo'>
+                    <Buttons title={' '} attribute='Style' />
+                    </TabPane>
+                
+                </Tabs>
+                
+              </div>
+            ) : null}
           </div>
           <Player style={{ height: '50vh' }} />
-      
         </div>
       </div>
     </div>
