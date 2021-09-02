@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { ThreekitProvider } from 'threekit';
+import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom'
+
 
 const Project = () => {
   const config = Object.assign(
-    {},
-    process.env.NODE_ENV === 'production'
-      ? { publishStage: 'draft', showAR: true, showLoadingThumbnail: true }
+    { showAR: true, showLoadingThumbnail: true },
+    process.env.NODE_ENV === 'development'
+      ? { publishStage: 'draft' }
       : undefined
   );
 
