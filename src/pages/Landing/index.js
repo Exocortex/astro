@@ -22,11 +22,16 @@ function Landing (props) {
     city: undefined,
     state: undefined,
     zip: undefined,
+    vip: undefined,
   })
+  useEffect(() => {
+    // Update the document title using the browser API
+    setUserInfo({ ...userInfo, vip: props.vip })
+  }, [])
 
   function handleChange (e) {
-    let keyName = e.target.id;
-    setUserInfo({...userInfo, [keyName]: e.target.value})
+    let keyName = e.target.id
+    setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
   async function saveAndContinue () {
@@ -45,7 +50,9 @@ function Landing (props) {
           <div>
             {' '}
             <h3>
-              Register for a chance to win your very own personalized Astro!
+              {props.vip
+                ? 'Enter your details to receive your own personalized Astro!'
+                : 'Register for a chance to win your very own personalized Astro!'}
             </h3>
             <p>
               By filling in this form you are consenting to share your
@@ -54,15 +61,16 @@ function Landing (props) {
             {Object.keys(userInfo).map(e => {
               return (
                 <div>
-
-                <Input
-                  onChange={handleChange}
-                  placeholder={e}
-                  key={e}
-                  style={{ width: '200px', margin: '5px' }}
-                  id={e}
-                  value={userInfo[e]}
-                />
+                  {e == 'vip' ? null : (
+                    <Input
+                      onChange={handleChange}
+                      placeholder={e}
+                      key={e}
+                      style={{ width: '200px', margin: '5px' }}
+                      id={e}
+                      value={userInfo[e]}
+                    />
+                  )}
                 </div>
               )
             })}
@@ -81,7 +89,9 @@ function Landing (props) {
           </AwaitPlayerLoad>
         ) : null}
 
-        {current == 2 ? <SubmitOrder config={config} userInfo={userInfo} /> : null}
+        {current == 2 ? (
+          <SubmitOrder config={config} userInfo={userInfo} />
+        ) : null}
         {/* <AwaitPlayerLoad>
           <Form />
         </AwaitPlayerLoad> */}

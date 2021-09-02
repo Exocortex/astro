@@ -4,14 +4,10 @@ import Products from './components/ProductList'
 import './App.css'
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom'
 import Product from './pages/Product'
-import VIPLanding from './pages/VIPLanding'
 import Landing from './pages/Landing'
 import ReturnConfig from "./pages/ReturnConfig";
 
-
-
 const { Header, Content, Footer } = Layout
-
 
 function App(props) {
   let search = window.location.search;
@@ -27,7 +23,7 @@ function App(props) {
             <Switch>
               <Route
                 path='/vip'
-                render={props => <VIPLanding {...props} vip={true} />}
+                render={props => <Landing {...props} vip={true} />}
               ></Route>
               {/* <Route path='/product/:productId' component={Product}></Route> */}
               <Route
