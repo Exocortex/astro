@@ -50,7 +50,9 @@ function Landing (props) {
           <div>
             {' '}
             <h3>
-              Register for a chance to win your very own personalized Astro!
+              {props.vip
+                ? 'Enter your details to receive your own personalized Astro!'
+                : 'Register for a chance to win your very own personalized Astro!'}
             </h3>
             <p>
               By filling in this form you are consenting to share your
