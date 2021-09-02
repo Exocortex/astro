@@ -36,9 +36,7 @@ function Configurator(props) {
       <div className='content'>
         <div>
           <div
-            style={{
-              margin: 'auto',
-            }}
+
           >
             {props.current == 1 ? (
               <div>
@@ -58,7 +56,6 @@ function Configurator(props) {
               </div>
             ) : null}
           </div>
-          <Player style={{ height: '50vh' }} />
         </div>
       </div>
     </div>

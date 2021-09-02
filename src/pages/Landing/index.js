@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Input, Button, Result } from 'antd'
-
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import Configurator from '../../components/Configurator'
@@ -28,12 +27,14 @@ function Landing (props) {
   useEffect(() => {
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })
-    fetch('https://astro-api.demo.threekit.com/get-inventory', {
-      headers: { 'Content-Type': 'application/json',
-     'Access-Control-Allow-Origin': '*'},
+    fetch('https://astro-api.demo.threekit.com/get-inventory/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => setInventory(data))
   }, [])
 
   function handleChange (e) {
@@ -45,9 +46,24 @@ function Landing (props) {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
-    console.log(response)
-    setConfig(response)
-    setCurrent(2)
+    console.log(inventory)
+    let currentConfig = {
+      Color: window.threekit.configurator.getConfiguration().Color,
+      Style: window.threekit.configurator.getConfiguration().Style
+    }
+
+    inventory.forEach(e => {
+      if(e.color == currentConfig.Color && e.style == currentConfig.Style){
+        console.log("MATCHING", e)
+        console.log('inventory left: ', e.quantity)
+      }
+    })
+    console.log(currentConfig)
+
+    // NEED THIS TO WORK
+    // console.log(response)
+    // setConfig(response)
+    // setCurrent(2)
   }
   return (
     <div>
