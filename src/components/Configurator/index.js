@@ -5,13 +5,8 @@ import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import { Tabs } from 'threekit/components'
 const { TabPane } = Tabs
-import {
-  Player,
-  Form,
-  Buttons,
-  AwaitPlayerLoad,
-} from '../../../threekit/components'
-function Configurator(props) {
+import { Player, Form, Buttons } from '../../../threekit/components'
+function Configurator (props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
 
@@ -20,27 +15,22 @@ function Configurator(props) {
       <div className='content'>
         <div>
           <div
-            style={{
-              margin: 'auto',
-            }}
+     
           >
-            {props.current == 1 ? (
-              <div>
-
-                <Tabs>
-                  <TabPane label='Color'>
-                    <Buttons title={' '} attribute='Color' />
+              {props.current == 1 ? (
+                <div>
+                  <Tabs>
+                    <TabPane label='Color'>
+                      <Buttons title={' '} attribute='Color' />
                     </TabPane>
-                  <TabPane label='Logo'>
-                    <Buttons title={' '} attribute='Style' />
+                    <TabPane label='Logo'>
+                      <Buttons title={' '} attribute='Style' />
                     </TabPane>
-                
-                </Tabs>
-                
-              </div>
-            ) : null}
+                  </Tabs>
+                </div>
+              ) : null}
+              <Player style={{ height: '45vh' }} />
           </div>
-          <Player style={{ height: '50vh' }} />
         </div>
       </div>
     </div>
