@@ -24,12 +24,21 @@ function Configurator(props) {
   const [displayStyle, setDisplayStyle] = useState();
 
   useEffect(() => {
-    if (style && setStyle) {
-      console.log(style)
-    }
     setDisplayColor(color)
     setDisplayStyle(style)
   }, [style, color]);
+
+  useEffect(() => {
+    if (displayColor && displayColor.values.length > 1) {
+      let temp = [...displayColor.values]
+      temp.filter((item) => {
+        console.log(props.inventory)
+        console.log(item)
+      })
+      temp.pop()
+      setDisplayColor({ ...displayColor, values: temp })
+    }
+  }, [displayColor, displayStyle]);
 
   return (
     <div>
@@ -55,6 +64,7 @@ function Configurator(props) {
 
               </div>
             ) : null}
+            <Player></Player>
           </div>
         </div>
       </div>
