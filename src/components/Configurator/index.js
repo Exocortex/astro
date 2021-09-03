@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Input, Button } from 'antd'
+import { Input, Button, notification } from 'antd'
 import { useAttribute } from 'threekit/hooks';
 
 import StepComponent from '../../components/Step'
@@ -24,21 +24,66 @@ function Configurator(props) {
   const [displayStyle, setDisplayStyle] = useState();
 
   useEffect(() => {
-    setDisplayColor(color)
-    setDisplayStyle(style)
+    if (!displayColor || !displayStyle) {
+      setDisplayColor(color)
+      setDisplayStyle(style)
+    }
   }, [style, color]);
 
   useEffect(() => {
-    if (displayColor && displayColor.values.length > 1) {
-      let temp = [...displayColor.values]
-      temp.filter((item) => {
-        console.log(props.inventory)
-        console.log(item)
-      })
-      temp.pop()
-      setDisplayColor({ ...displayColor, values: temp })
+
+  }, [displayStyle]);
+
+  const openNotification = (color) => {
+    notification.open({
+      message: 'Out of Stock',
+      description:
+        `Sorry ${style.value} in ${color} is out of stock!`,
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
+
+  let generateInventoryArray = (inventory, string) => {
+    let res = inventory.map((inv) => {
+      if (inv.color === string && inv.quantity > 0) {
+        return inv.style
+      }
+    })
+    return res.filter(function (x) {
+      return x !== undefined;
+    });
+  }
+
+  let handleColor = async (e) => {
+    setColor(e)
+    setDisplayStyle(style)
+    let arrayInventory = {
+      Royal: generateInventoryArray(props.inventory, "Royal"),
+      Orange: generateInventoryArray(props.inventory, "Orange"),
+      White: generateInventoryArray(props.inventory, "White")
     }
-  }, [displayColor, displayStyle]);
+    let activeArray = arrayInventory[e]
+    let temp = style
+    let filtered = temp.values.filter((value) => {
+      if (activeArray.includes(value.value)) {
+        return true
+      } return false
+    })
+    console.log(filtered)
+    let bool
+    filtered.forEach(element => {
+      if (element.value === style.value) {
+        bool = true
+      }
+    });
+    if (!bool) {
+      setStyle(filtered[0].value)
+      openNotification(e)
+    }
+    setDisplayStyle({ ...displayStyle, values: filtered })
+  }
 
   return (
     <div>
@@ -51,8 +96,8 @@ function Configurator(props) {
               <div>
 
                 <Tabs>
-                  <TabPane label='Color'>
-                    {displayColor ? <Buttons options={displayColor.values} handleClick={setColor} selected={color.value}></Buttons> : null
+                  <TabPane label='Color' >
+                    {displayColor ? <Buttons options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}></Buttons> : null
                     }
                   </TabPane>
                   <TabPane label='Logo'>
