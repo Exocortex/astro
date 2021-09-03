@@ -1,3 +1,4 @@
+
 .content {
   text-align: center;
   margin: 10px;
@@ -31,7 +32,7 @@
 }
 .tk-player {
   margin: auto;
-  width: 70vh !important;
+  width: 70vw !important;
   height: 70vh !important;
   min-height: 0px !important;
 }
@@ -43,4 +44,7 @@
 #threekit-player {
   min-height: 0px !important;
   height: 100% !important;
+}
+.ant-layout {
+  background-color: #e2e2e2
 }

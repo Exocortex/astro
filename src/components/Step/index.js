@@ -8,7 +8,7 @@ function StepComponent (props) {
     <div>
      <Steps current={props.active}>
     <Step title="Register" />
-    <Step title="Personalize"  />
+    <Step title="Build"  />
     <Step title="Submit"  />
   </Steps>
     </div>

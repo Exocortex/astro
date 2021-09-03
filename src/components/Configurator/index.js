@@ -10,6 +10,7 @@ import {
   Player,
   Form,
   Buttons,
+  Swatch,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
 
@@ -109,7 +110,10 @@ function Configurator(props) {
 
               </div>
             ) : null}
-            <Player></Player>
+            {/* <div > */}
+            <Player ></Player>
+
+            {/* </div> */}
           </div>
         </div>
       </div>

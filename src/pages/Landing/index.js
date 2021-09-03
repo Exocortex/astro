@@ -64,8 +64,8 @@ function Landing(props) {
 
     // NEED THIS TO WORK
     // console.log(response)
-    // setConfig(response)
-    // setCurrent(2)
+    setConfig(response)
+    setCurrent(2)
   }
   return (
     <div>

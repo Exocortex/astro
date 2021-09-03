@@ -15,7 +15,6 @@ function App(props) {
   let enableAR = params.get('enableAR');
   return (
     <div className='App'>
-
       {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout'>
         <Header id='header'></Header>
         <Content style={{ padding: '1em' }}>
@@ -23,7 +22,7 @@ function App(props) {
             <Switch>
               <Route
                 path='/vip'
-                render={props => <Landing {...props} vip={true} />}
+                render={props => <Landing {...props} vip={'true'} />}
               ></Route>
               {/* <Route path='/product/:productId' component={Product}></Route> */}
               <Route
@@ -33,7 +32,7 @@ function App(props) {
               {/* <Route path='/' component={Landing} ></Route> */}
               <Route
                 path='/'
-                render={props => <Landing {...props} vip={false} />}
+                render={props => <Landing {...props} vip={'false'} />}
               ></Route>
 
               {/* <Route path='/' component={Products}></Route> */}
