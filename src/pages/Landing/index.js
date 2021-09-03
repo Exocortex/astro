@@ -10,7 +10,7 @@ import {
   Snapshot,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
-function Landing (props) {
+function Landing(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [userInfo, setUserInfo] = useState({
@@ -34,15 +34,17 @@ function Landing (props) {
       },
     })
       .then(response => response.json())
-      .then(data => setInventory(data))
+      .then(data => {
+        setInventory(data)
+      })
   }, [])
 
-  function handleChange (e) {
+  function handleChange(e) {
     let keyName = e.target.id
     setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
-  async function saveAndContinue () {
+  async function saveAndContinue() {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
@@ -53,7 +55,7 @@ function Landing (props) {
     }
 
     inventory.forEach(e => {
-      if(e.color == currentConfig.Color && e.style == currentConfig.Style){
+      if (e.color == currentConfig.Color && e.style == currentConfig.Style) {
         console.log("MATCHING", e)
         console.log('inventory left: ', e.quantity)
       }
@@ -101,7 +103,7 @@ function Landing (props) {
             <Button onClick={() => setCurrent(1)}>Proceed</Button>
           </div>
         ) : null}
-        {current > 0 ? <Configurator current={current} /> : null}
+        {current > 0 ? <Configurator current={current} inventory={inventory} /> : null}
 
         {current == 1 ? (
           <AwaitPlayerLoad>
