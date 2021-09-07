@@ -13,12 +13,20 @@
   justify-content: center !important;
   flex-direction: column !important;
   align-items: center !important;
+  position: absolute;
+  z-index: 100000;
+  top: 50vw;
+  left: 10px;
 }
 
 .tk-buttons-content {
   justify-content: center !important;
   flex-direction: column !important;
   align-items: center !important;
+  position: absolute;
+  z-index: 100000;
+  top: 50vw;
+  right: 10px;
 }
 .App-logo {
   height: 40vmin;

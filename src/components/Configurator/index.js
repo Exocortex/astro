@@ -118,15 +118,7 @@ function Configurator(props) {
             {props.current == 1 ? (
               <div>
                 {displayColor ?
-                  <div style={{
-                    display: 'flex',
-                    margin: 'auto',
-                    width: '100%',
-                    justifyContent: 'space-between',
-                    position: 'absolute',
-                    padding: '5vw',
-                    zIndex: "10",
-                  }}>
+                  <div>
                     <ColorSwatch options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}>
                     </ColorSwatch>
                     <Buttons options={displayStyle.values} handleClick={setStyle} selected={style.value}>
