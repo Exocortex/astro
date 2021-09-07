@@ -1,4 +1,3 @@
-
 .content {
   text-align: center;
   margin: 10px;
@@ -6,13 +5,12 @@
 /* sc-bCwfaz hPNTLI threekit-react tk-input-buttons hoodie-finish tk-buttons-content */
 .sc-dvXYtj {
   justify-content: center;
-
 }
-.bsXUgw{
+.bsXUgw {
   justify-content: center;
 }
-.tk-buttons-content {
-  justify-content: center;
+.tk-color-swatch-content {
+  justify-content: center !important;
 }
 .App-logo {
   height: 40vmin;
@@ -46,5 +44,5 @@
   height: 100% !important;
 }
 .ant-layout {
-  background-color: #e2e2e2
+  background-color: #e2e2e2;
 }
