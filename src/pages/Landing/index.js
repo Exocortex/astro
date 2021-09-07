@@ -10,17 +10,20 @@ import {
   Snapshot,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
-function Landing(props) {
+
+const { TextArea } = Input
+
+function Landing (props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [userInfo, setUserInfo] = useState({
-    name: undefined,
-    email: undefined,
-    company: undefined,
+    firstName: undefined,
+    lastName: undefined,
+    jobTitle: undefined,
+    workEmail: undefined,
+    phone: undefined,
+    country: undefined,
     address: undefined,
-    city: undefined,
-    state: undefined,
-    zip: undefined,
     vip: undefined,
   })
   const [inventory, setInventory] = useState([])
@@ -39,24 +42,24 @@ function Landing(props) {
       })
   }, [])
 
-  function handleChange(e) {
+  function handleChange (e) {
     let keyName = e.target.id
     setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
-  async function saveAndContinue() {
+  async function saveAndContinue () {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
     console.log(inventory)
     let currentConfig = {
       Color: window.threekit.configurator.getConfiguration().Color,
-      Style: window.threekit.configurator.getConfiguration().Style
+      Style: window.threekit.configurator.getConfiguration().Style,
     }
 
     inventory.forEach(e => {
       if (e.color == currentConfig.Color && e.style == currentConfig.Style) {
-        console.log("MATCHING", e)
+        console.log('MATCHING', e)
         console.log('inventory left: ', e.quantity)
       }
     })
@@ -80,17 +83,26 @@ function Landing(props) {
                 : 'Register for a chance to win your very own personalized Astro!'}
             </h3>
             <p>
-              By filling in this form you are consenting to share your
-              information with Threekit & Salesforce.
+              By registering, you agree to the processing of your personal data
+              by Salesforce as described in the{' '}
+              <a href='https://www.salesforce.com/company/privacy/full_privacy/' target='_blank'>
+                Privacy Statement
+              </a>
+              .
             </p>
             {Object.keys(userInfo).map(e => {
+              let string = e.replace(/([A-Z])/g, ' $1')
               return (
                 <div>
                   {e == 'vip' ? null : (
-                    <Input
+                    <TextArea
                       onChange={handleChange}
-                      placeholder={e}
+                      placeholder={
+                        string.charAt(0).toUpperCase() + string.slice(1)
+                      }
                       key={e}
+                      rows={e == 'address' ? 4 : 1}
+                      // autoSize={true}
                       style={{ width: '200px', margin: '5px' }}
                       id={e}
                       value={userInfo[e]}
@@ -103,7 +115,9 @@ function Landing(props) {
             <Button onClick={() => setCurrent(1)}>Proceed</Button>
           </div>
         ) : null}
-        {current > 0 ? <Configurator current={current} inventory={inventory} /> : null}
+        {current > 0 ? (
+          <Configurator current={current} inventory={inventory} />
+        ) : null}
 
         {current == 1 ? (
           <AwaitPlayerLoad>
