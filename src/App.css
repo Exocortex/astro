@@ -12,6 +12,10 @@
 .tk-color-swatch-content {
   justify-content: center !important;
 }
+
+.tk-buttons-content {
+  justify-content: center !important;
+}
 .App-logo {
   height: 40vmin;
 }

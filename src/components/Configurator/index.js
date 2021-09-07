@@ -122,7 +122,7 @@ function Configurator(props) {
                     }
                   </TabPane>
                   <TabPane label='Logo'>
-                    {displayStyle ? <Button options={displayStyle.values} handleClick={setStyle} selected={style.value}></Button> : null
+                    {displayStyle ? <Buttons options={displayStyle.values} handleClick={setStyle} selected={style.value}></Buttons> : null
                     }
                   </TabPane>
 
