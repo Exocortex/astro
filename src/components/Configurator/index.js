@@ -12,6 +12,7 @@ import {
   Buttons,
   ColorSwatch,
   AwaitPlayerLoad,
+  TwoCol,
 } from '../../../threekit/components'
 
 
@@ -23,6 +24,7 @@ function Configurator(props) {
   const [style, setStyle] = useAttribute('Style');
   const [displayColor, setDisplayColor] = useState();
   const [displayStyle, setDisplayStyle] = useState();
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
@@ -115,18 +117,22 @@ function Configurator(props) {
           >
             {props.current == 1 ? (
               <div>
-
-                <Tabs>
-                  <TabPane label='Color' >
-                    {displayColor ? <ColorSwatch options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}></ColorSwatch> : null
-                    }
-                  </TabPane>
-                  <TabPane label='Logo'>
-                    {displayStyle ? <Buttons options={displayStyle.values} handleClick={setStyle} selected={style.value}></Buttons> : null
-                    }
-                  </TabPane>
-
-                </Tabs>
+                {displayColor ?
+                  <div style={{
+                    display: 'flex',
+                    margin: 'auto',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    position: 'absolute',
+                    padding: '5vw',
+                    zIndex: "10",
+                  }}>
+                    <ColorSwatch options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}>
+                    </ColorSwatch>
+                    <Buttons options={displayStyle.values} handleClick={setStyle} selected={style.value}>
+                    </Buttons>
+                  </div> : null
+                }
 
               </div>
             ) : null}
