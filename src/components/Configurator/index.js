@@ -10,7 +10,7 @@ import {
   Player,
   Form,
   Buttons,
-  Swatch,
+  ColorSwatch,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
 
@@ -25,14 +25,34 @@ function Configurator(props) {
   const [displayStyle, setDisplayStyle] = useState();
 
   useEffect(() => {
-    if (!displayColor || !displayStyle) {
-      setDisplayColor(color)
+    if (color && (!displayColor || !displayStyle)) {
+      let temp = color.values.map((e) => {
+        return { ...e, colorValue: generateColorHex(e.label) }
+      })
+      setDisplayColor({ ...color, values: temp })
+      console.log(temp)
       setDisplayStyle(style)
     }
   }, [style, color]);
 
-  useEffect(() => {
+  let generateColorHex = (colorString) => {
+    switch (colorString) {
+      case 'White':
+        return '#edeeec'
+        break;
+      case 'Royal':
+        return '#7aa8f3'
+        break;
+      case 'Orange':
+        return '#ffa259'
+        break;
+      default:
+        return '#ff0000'
+        break;
+    }
+  }
 
+  useEffect(() => {
   }, [displayStyle]);
 
   const openNotification = (color) => {
@@ -98,7 +118,7 @@ function Configurator(props) {
 
                 <Tabs>
                   <TabPane label='Color' >
-                    {displayColor ? <Buttons options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}></Buttons> : null
+                    {displayColor ? <ColorSwatch options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}></ColorSwatch> : null
                     }
                   </TabPane>
                   <TabPane label='Logo'>
