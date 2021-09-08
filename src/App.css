@@ -9,12 +9,58 @@
 .bsXUgw {
   justify-content: center;
 }
-.tk-color-swatch-content {
-  justify-content: center !important;
+#color-options-box {
+  position: absolute;
+  top: 30vh;
+  left: 5px;
+  padding: 5px;
+  height: 50vh;
+}
+#color-options-box > * {
+  justify-content: space-evenly !important;
+  flex-direction: column !important;
 }
 
-.tk-buttons-content {
-  justify-content: center !important;
+#logo-options-box {
+  position: absolute;
+  top: 30vh;
+  right: 5px;
+  height: 50vh;
+}
+
+#logo-options-box > * {
+  justify-content: space-evenly !important;
+  flex-direction: column !important;
+}
+
+#logo-options-box > * > * {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (min-width: 600px) {
+  #logo-options-box {
+    right: 10vw;
+  }
+  #color-options-box {
+    left: 10vw;
+  }
+}
+/* @media only screen and (min-width: 1000px) {
+  .tk-buttons-content {
+    right: 30vw;
+  }
+  .tk-color-swatch-content {
+    left: 30vw;
+  }
+} */
+
+.sc-iqAclL {
+  z-index: 1000000;
+}
+.sc-bYwzuL {
+  border: 1px solid black !important;
+  z-index: 1000000;
 }
 .App-logo {
   height: 40vmin;
@@ -34,8 +80,8 @@
 }
 .tk-player {
   margin: auto;
-  width: 60vw !important;
-  height: 60vh !important;
+  width: 100% !important;
+  height: 70vh !important;
   min-height: 0px !important;
 }
 
