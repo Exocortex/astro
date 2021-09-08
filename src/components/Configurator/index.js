@@ -28,12 +28,15 @@ function Configurator(props) {
 
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
-      let temp = color.values.map((e) => {
+      let tempColor = color.values.map((e) => {
         return { ...e, colorValue: generateColorHex(e.label) }
       })
-      setDisplayColor({ ...color, values: temp })
-      console.log(temp)
-      setDisplayStyle(style)
+      let tempLogo = style.values.map((logo) => {
+        return { ...logo, colorValue: generateUrlString(logo.value) }
+      })
+      setDisplayColor({ ...color, values: tempColor })
+      console.log(tempColor)
+      setDisplayStyle({ ...style, values: tempLogo })
     }
   }, [style, color]);
 
@@ -47,6 +50,30 @@ function Configurator(props) {
         break;
       case 'Orange':
         return '#ffa259'
+        break;
+      default:
+        return '#ff0000'
+        break;
+    }
+  }
+
+  let generateUrlString = (logo) => {
+    console.log(logo)
+    switch (logo) {
+      case 'Salesforce':
+        return 'url(https://solutions-engineering.s3.amazonaws.com/media/web-assets/Salesforce+Logo.png)'
+        break;
+      case 'Adventure':
+        return 'url(https://solutions-engineering.s3.amazonaws.com/media/web-assets/Astro+on+Adventure.png)'
+        break;
+      case 'Sales Cloud':
+        return 'url("https://solutions-engineering.s3.amazonaws.com/media/web-assets/Salesforce+Cloud.png")'
+        break;
+      case 'Fanny Pack':
+        return 'url("https://solutions-engineering.s3.amazonaws.com/media/web-assets/Bag.png")'
+        break;
+      case 'Pride':
+        return 'url("https://solutions-engineering.s3.amazonaws.com/media/web-assets/Pride.png")'
         break;
       default:
         return '#ff0000'
@@ -81,7 +108,10 @@ function Configurator(props) {
 
   let handleColor = async (e) => {
     setColor(e)
-    setDisplayStyle(style)
+    let tempLogo = style.values.map((logo) => {
+      return { ...logo, colorValue: generateUrlString(logo.value) }
+    })
+    setDisplayStyle({ ...style, values: tempLogo })
     let arrayInventory = {
       Royal: generateInventoryArray(props.inventory, "Royal"),
       Orange: generateInventoryArray(props.inventory, "Orange"),
@@ -100,6 +130,7 @@ function Configurator(props) {
       if (element.value === style.value) {
         bool = true
       }
+      element.colorValue = generateUrlString(element.value)
     });
     if (!bool) {
       setStyle(filtered[0].value)
@@ -119,10 +150,10 @@ function Configurator(props) {
               <div>
                 {displayColor ?
                   <div>
-                    <ColorSwatch options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}>
+                    <ColorSwatch size="50px" id='color-options-box' options={displayColor.values} handleClick={(e) => handleColor(e)} selected={color.value}>
                     </ColorSwatch>
-                    <Buttons options={displayStyle.values} handleClick={setStyle} selected={style.value}>
-                    </Buttons>
+                    <ColorSwatch size="50px" id='logo-options-box' options={displayStyle.values} handleClick={setStyle} selected={style.value}>
+                    </ColorSwatch>
                   </div> : null
                 }
 

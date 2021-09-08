@@ -27,6 +27,7 @@ export const ColorSwatch = (props) => {
     hideDisabled,
     handleClick,
     isPlayerLoading,
+    id
   } = props;
 
   let className = `${defaultClassName}-color-swatch`;
@@ -36,7 +37,7 @@ export const ColorSwatch = (props) => {
   className += ` ${classPrefix}-color-swatch`;
 
   return (
-    <Wrapper className={`${className}-component`}>
+    <Wrapper className={`${className}-component`} id={id}>
       {title && <Title className={`${className}-header`}>{title}</Title>}
       {description ? (
         <Description className={`${className}-description`}>

@@ -15,7 +15,7 @@ function App(props) {
   let enableAR = params.get('enableAR');
   return (
     <div className='App'>
-      {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout'>
+      {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout' style={{ height: "100vh" }}>
         <Header id='header'></Header>
         <Content style={{ padding: '1em' }}>
           <Router>
@@ -39,9 +39,6 @@ function App(props) {
             </Switch>
           </Router>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Threekit {new Date().getFullYear()}
-        </Footer>
       </Layout>}
     </div>
 
