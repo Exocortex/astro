@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Input, Spin, notification } from 'antd'
 import { useAttribute, usePlayerLoadingStatus } from 'threekit/hooks'
-
+import Loading from '../Loading'
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import { Tabs } from 'threekit/components'
@@ -14,6 +14,7 @@ import {
   AwaitPlayerLoad,
   TwoCol,
 } from '../../../threekit/components'
+import { isMobile } from 'react-device-detect'
 
 function Configurator (props) {
   const [current, setCurrent] = useState(0)
@@ -23,7 +24,7 @@ function Configurator (props) {
   const [displayColor, setDisplayColor] = useState()
   const [displayStyle, setDisplayStyle] = useState()
   const [step, setStep] = useState(0)
-  const loading = usePlayerLoadingStatus();
+  const loading = usePlayerLoadingStatus()
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
       let tempColor = color.values.map(e => {
@@ -36,8 +37,6 @@ function Configurator (props) {
       console.log(tempColor)
       setDisplayStyle({ ...style, values: tempLogo })
     }
-
-console.log('loading' + window.loadingProgess)
   }, [style, color])
 
   let generateColorHex = colorString => {
@@ -139,8 +138,13 @@ console.log('loading' + window.loadingProgess)
   }
 
   return (
-    <div>
-      <div className='content'>
+    <div
+      style={isMobile ? {} : {
+        float: props.current == 2 ? 'left' : 'none',
+        width: props.current == 2 ? '70%' : '100%',
+      }}
+    >
+      <div className='content-center'>
         <div>
           <div>
             {props.current == 1 ? (
@@ -167,7 +171,7 @@ console.log('loading' + window.loadingProgess)
             ) : null}
             {/* <div > */}
             <Player></Player>
-            {window.loadingProgess == undefined || window.loadingProgess < 1 ? <div><p>Loading..</p><Spin/></div> : null}
+            <Loading />
 
             {/* </div> */}
           </div>

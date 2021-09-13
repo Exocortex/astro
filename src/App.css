@@ -1,6 +1,9 @@
-.content {
+.content-center {
   text-align: center;
   margin: 10px;
+}
+.landing-welcome{
+  width: 40%
 }
 /* sc-bCwfaz hPNTLI threekit-react tk-input-buttons hoodie-finish tk-buttons-content */
 .sc-dvXYtj {
@@ -80,7 +83,7 @@
 }
 .tk-player {
   margin: auto;
-  width: 100% !important;
+  width: 50% !important;
   height: 70vh !important;
   min-height: 0px !important;
 }
@@ -92,7 +95,53 @@
 #threekit-player {
   min-height: 0px !important;
   height: 100% !important;
+
 }
 .ant-layout {
-  background-color: #e2e2e2;
+  background-color: #ffffff;
+
+  /* background-size:auto */
+  /* background-repeat: no-repeat; */
+
+}
+
+.ant-layout-content{
+  background-image: url('https://solutions-engineering.s3.amazonaws.com/astro/background-gradient-stump.png');
+  background-position: bottom; 
+  background-size: cover;
+}
+
+.control-btn{
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  margin: 10px
+}
+.tk-input-color-swatch{
+  border-radius: 5px!important
+}
+.ant-tooltip{
+  z-index: 1000000
+}
+
+.button-container{
+  clear:both
+}
+
+.app-footer{
+  background-color: #ffffff;
+  width: 100vw;
+  height: 5%;
+  text-align: center;
+
+
+}
+.app-footer:before{
+
+  border-top-left-radius: 500px 40px;
+  border-top-right-radius: 500px 40px;
+}
+
+.submit-form{
+  background-color: #ffffff;
 }

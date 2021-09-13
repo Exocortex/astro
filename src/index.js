@@ -16,7 +16,7 @@ const Project = () => {
       showAR: true,
       showLoadingThumbnail: true,
       showLoadingProgress: false,
-      onLoadingProgress: e => window.loadingProgess = e,
+      onLoadingProgress: e => window.loadingProgress = e,
     },
     process.env.NODE_ENV === 'development'
       ? { publishStage: 'draft' }
