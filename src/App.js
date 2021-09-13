@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-route
 import Product from './pages/Product'
 import Landing from './pages/Landing'
 import ReturnConfig from "./pages/ReturnConfig";
+import FooterComp from "./components/Footer";
+
 
 const { Header, Content, Footer } = Layout
 
@@ -39,6 +41,11 @@ function App(props) {
             </Switch>
           </Router>
         </Content>
+        {/* <Footer>
+        <FooterComp/>
+
+        </Footer>  */}
+
       </Layout>}
     </div>
 
