@@ -78,7 +78,7 @@ function Landing (props) {
           <div>
             {' '}
             <h3>
-              {props.vip
+              {props.vip == 'true'
                 ? 'Enter your details to receive your own personalized Astro!'
                 : 'Register for a chance to win your very own personalized Astro!'}
             </h3>
