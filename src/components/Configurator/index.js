@@ -24,7 +24,11 @@ function Configurator (props) {
   const [displayColor, setDisplayColor] = useState()
   const [displayStyle, setDisplayStyle] = useState()
   const [step, setStep] = useState(0)
-  const loading = usePlayerLoadingStatus()
+  const loading = usePlayerLoadingStatus();
+
+
+
+
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
       let tempColor = color.values.map(e => {
@@ -151,12 +155,15 @@ function Configurator (props) {
               <div>
                 {displayColor ? (
                   <div>
+                    <center>
+
                     <ColorSwatch
                       size='50px'
                       id='color-options-box'
                       options={displayColor.values}
                       handleClick={e => handleColor(e)}
                       selected={color.value}
+                      title={isMobile ? undefined : 'Select Color'}
                     ></ColorSwatch>
                     <ColorSwatch
                       size='50px'
@@ -164,7 +171,10 @@ function Configurator (props) {
                       options={displayStyle.values}
                       handleClick={setStyle}
                       selected={style.value}
+                      title={isMobile ? undefined : 'Select Style'}
+
                     ></ColorSwatch>
+                    </center>
                   </div>
                 ) : null}
               </div>

@@ -7,7 +7,8 @@ import Product from './pages/Product'
 import Landing from './pages/Landing'
 import ReturnConfig from "./pages/ReturnConfig";
 import FooterComp from "./components/Footer";
-
+import "antd/dist/antd.less";
+import "./theme.less";
 
 const { Header, Content, Footer } = Layout
 
@@ -17,7 +18,7 @@ function App(props) {
   let enableAR = params.get('enableAR');
   return (
     <div className='App'>
-      {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout' style={{ height: "100vh" }}>
+      {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout'>
         <Header id='header'></Header>
         <Content style={{ padding: '1em' }}>
           <Router>
@@ -41,10 +42,10 @@ function App(props) {
             </Switch>
           </Router>
         </Content>
-        {/* <Footer>
+        <Footer>
         <FooterComp/>
 
-        </Footer>  */}
+        </Footer> 
 
       </Layout>}
     </div>

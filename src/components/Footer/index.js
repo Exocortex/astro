@@ -3,9 +3,9 @@ import { Spin } from 'antd'
 
 function Footer (props) {
   return (
-    <div className="app-footer">
+    <div className="app-footer" >
       {window.loadingProgress < 1 || window.loadingProgress == undefined ? (
-        <div>©2020-2021 Salesforce, Inc...</div>
+        <div>©2020-2021 Salesforce, Inc. All rights reserved. </div>
       ) : null}
     </div>
   )

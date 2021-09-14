@@ -1,1 +1,271 @@
 
+@primary-color: #1a110d; // primary color for all components
+@layout-body-background: #ffffff;
+@component-background: #ffffff;
+
+@font-face {
+    font-family: "Salesforce Regular";
+    src: local("Salesforce Regular"),
+      url(./fonts/SalesforceSans-Regular.woff2) format("woff2");
+      font-weight: normal;
+
+      font-family: "Salesforce Bold";
+      src: local("Salesforce Bold"),
+        url(./fonts/SalesforceSans-Bold.woff2) format("woff2");
+        font-weight: bold;
+
+  }
+
+  h1, h2, h3{
+      font-family: 'Salesforce Bold';
+  }
+
+  body{
+      font-family: 'Salesforce Regular', 'Salesforce Regular';
+  }
+
+  .bold {
+    // font-family: "Louis Vuitton Bold", "Helvetica Neue", "Helvetica", Arial,
+    //   sans-serif;
+    font-weight: bold;
+  }
+  
+  .regular {
+    // font-family: "Louis Vuitton Regular", "Helvetica Neue", "Helvetica", Arial,
+    //   sans-serif;
+  }
+  
+  .light {
+    // font-family: "Louis Vuitton light", "Helvetica Neue", "Helvetica", Arial,
+    //   sans-serif;
+  }
+
+  .content-center {
+    text-align: center;
+    margin: 10px;
+  }
+ 
+  /* sc-bCwfaz hPNTLI threekit-react tk-input-buttons hoodie-finish tk-buttons-content */
+  .sc-dvXYtj {
+    justify-content: center;
+  }
+  .bsXUgw {
+    justify-content: center;
+  }
+  #color-options-box {
+    position: absolute;
+    top: 30vh;
+    left: 5px;
+    padding: 5px;
+    height: 50vh;
+  }
+  #color-options-box > * {
+    justify-content: space-between !important;
+    flex-direction: column !important;
+    align-items: center;
+  }
+  .dkZGun > div:last-child {
+    margin-right: 12px!important
+  }
+
+  #logo-options-box {
+    position: absolute;
+    top: 30vh;
+    right: 5px;
+    height: 50vh;
+    align-items: center;
+  }
+  
+  #logo-options-box > * {
+    justify-content: space-evenly !important;
+    flex-direction: column !important;
+    align-items: center;
+
+  }
+  
+  #logo-options-box > * > * {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  @media only screen and (min-width: 600px) {
+    #logo-options-box {
+      right: 10vw;
+    }
+    #color-options-box {
+      left: 10vw;
+    }
+  }
+  /* @media only screen and (min-width: 1000px) {
+    .tk-buttons-content {
+      right: 30vw;
+    }
+    .tk-color-swatch-content {
+      left: 30vw;
+    }
+  } */
+  
+  .sc-iqAclL {
+    z-index: 1000000;
+  }
+  .sc-bYwzuL {
+    border: 1px solid black !important;
+    z-index: 1000000;
+  }
+  .App-logo {
+    height: 40vmin;
+  }
+  
+  #header {
+    background: #ffffff;
+    background-image: url(https://solutions-engineering.s3.amazonaws.com/astro/Dreamforce-2021-Cloud-Logo-RGB.png);
+    background-repeat: no-repeat;
+    background-size: auto 90px;
+    background-position-y: center;
+    background-position-x: 30px;
+  }
+  
+  .App-link {
+    color: #09d3ac;
+  }
+
+  
+  .player___25Zg2 {
+    height: 100% !important;
+  }
+  
+  #threekit-player {
+    min-height: 0px !important;
+    height: 100% !important;
+  
+  }
+  .ant-layout {
+    background-color: #ffffff;
+  
+    /* background-size:auto */
+    /* background-repeat: no-repeat; */
+  
+  }
+  
+  
+  .ant-layout-content{
+    background-image: url('https://solutions-engineering.s3.amazonaws.com/astro/background-gradient-stump.png');
+    background-position: bottom; 
+    background-size: cover;
+  }
+  
+  .control-btn{
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    margin: 10px
+  }
+ .threekit-react.tk-input-color-swatch.tk-color-swatch-option.Salesforce{
+   background-color: #ffffff;
+ }
+ .threekit-react.tk-input-color-swatch.tk-color-swatch-option.Adventure{
+  background-color: #ffffff;
+}
+.threekit-react.tk-input-color-swatch.tk-color-swatch-option.Sales.Cloud{
+  background-color: #ffffff;
+}
+.threekit-react.tk-input-color-swatch.tk-color-swatch-option.Fanny.Pack{
+  background-color: #ffffff;
+}
+.threekit-react.tk-input-color-swatch.tk-color-swatch-option.Pride{
+  background-color: #ffffff;
+}
+
+.anticon.anticon-check{
+  display: none
+}
+.anticon.anticon-check.ant-steps-finish-icon{
+  display: inline-block;
+}
+  .control-btn.back{
+ background-color: rgb(179, 179, 179);
+ border-color: rgb(130, 130, 130);
+
+  }
+
+
+  .tk-input-color-swatch{
+    border-radius: 5px!important
+  }
+  .ant-tooltip{
+    z-index: 1000000
+  }
+  
+  .button-container{
+    clear:both
+  }
+  
+  .ant-layout-footer{
+    background-color: #ffffff;
+    // width: 100vw;
+    height: 5%;
+    text-align: center;
+  
+  
+  }
+  .app-footer:before{
+  
+    border-top-left-radius: 500px 40px;
+    border-top-right-radius: 500px 40px;
+  }
+  
+  .submit-form{
+    background-color: #ffffff;
+  }
+  
+  
+  
+  @media only screen 
+    and (min-device-width: 320px) 
+    and (max-device-width: 480px)
+  {
+      .step-comp{
+        margin: auto
+      }
+      .submit-form{
+        background-color: #ffffff;
+        padding: 5px;
+      }
+      .landing-welcome{
+        margin: auto;
+      }
+      .tk-player {
+        margin: auto;
+        width: 80% !important;
+        height: 70vh !important;
+        min-height: 0px !important;
+      }
+  
+  }
+  /* ----------- Non-Retina Screens ----------- */
+  @media screen 
+    and (min-device-width: 1200px) 
+    {
+      .step-comp{
+        width: 50%;
+        /* text-align: center;
+        margi */
+        margin: auto
+      }
+      .submit-form{
+        background-color: #ffffff;
+        width: 20%;
+        float: left;
+        padding: 5px;
+      }
+      .landing-welcome{
+        width: 40%;
+        margin: auto;
+      }
+      .tk-player {
+        margin: auto;
+        width: 50% !important;
+        height: 70vh !important;
+        min-height: 0px !important;
+      }
+  }

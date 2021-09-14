@@ -32,30 +32,46 @@ function SubmitOrder (props) {
 
   async function submit () {
     const { controller } = window.threekit
-    showModal()
-    const response = await controller._api.orders.createOrder({
-      userId: props.userInfo,
-      name: 'test',
-      metadata: props.userInfo,
-      cart: [
-        {
-          configurationId: props.config.id,
-          count: 1,
-          metadata: {},
+    const findUndefined = element => element == undefined
+    let arr = Object.values(props.userInfo)
+
+    if (arr.some(findUndefined)) {
+      console.log(props.userInfo)
+      notification.open({
+        message: 'Check all form fields',
+        description: 'Please ensure all fields are filled out',
+        onClick: () => {
+          console.log('Notification Clicked!')
         },
-      ],
-    })
-    console.log(response)
-    setIsSubmitted(true)
+      })
+    } else {
+      const response = await controller._api.orders.createOrder({
+        userId: props.userInfo,
+        name: 'test',
+        metadata: props.userInfo,
+        cart: [
+          {
+            configurationId: props.config.id,
+            count: 1,
+            metadata: {},
+          },
+        ],
+      })
+      console.log(response)
+      showModal()
+
+      setIsSubmitted(true)
+    }
   }
   return (
     <div>
       {/* <p>{JSON.stringify(props.userInfo)}</p> */}
       <Modal
-        title='Basic Modal'
+        title='Thank you!'
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <Result
           status='success'
@@ -65,7 +81,7 @@ function SubmitOrder (props) {
             <Button type='primary' key='console' onClick={() => shareLink()}>
               Share Astro
             </Button>,
-            <Button key='buy'>Return Home</Button>,
+            <Button key='buy' href="https://salesforce.com/salescloud" target="_blank">Learn More</Button>,
           ]}
         />
       </Modal>

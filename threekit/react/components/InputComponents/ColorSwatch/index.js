@@ -49,7 +49,7 @@ export const ColorSwatch = (props) => {
           if (option.disabled && hideDisabled) return null;
           let cls = `${className}-option option-${i + 1} ${option.value}`;
           return (
-            <Tooltip key={i} placement="top" title={option.label}>
+            <Tooltip key={i} placement="left" title={option.label}>
               <Option
                 size={size}
                 className={cls}

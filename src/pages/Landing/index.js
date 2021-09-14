@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Input, Button, Result } from 'antd'
+import { Input, Button, message } from 'antd'
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import Configurator from '../../components/Configurator'
@@ -23,10 +23,15 @@ function Landing (props) {
     workEmail: undefined,
     phone: undefined,
     country: undefined,
-    address: undefined,
+    shippingAddress: undefined,
     vip: undefined,
   })
-  const [inventory, setInventory] = useState([])
+  const [inventory, setInventory] = useState([]);
+
+  const startConfig = () => {
+    message.info('Select a color and style to make Astro your own!');
+    setCurrent(1)
+  };
   useEffect(() => {
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })
@@ -89,11 +94,11 @@ function Landing (props) {
               Help Astro figure out what to wear and get your very own
               unique-to-you Astro plushie.
             </h3>
-            <h3>
+            <p>
               Better hurry! The first _____ people to configure a character will
               get this awesome Sales Cloud swag. Hit 'next' to start your
               fashion adventure with Astro.
-            </h3>
+            </p>
             <p>
               By registering, you agree to the processing of your personal data
               by Salesforce as described in the{' '}
@@ -110,7 +115,7 @@ function Landing (props) {
        
             <br />
             <div className='content-center'>
-              <Button className='control-btn' onClick={() => setCurrent(1)}>
+              <Button className='control-btn' onClick={startConfig}>
                 Next
               </Button>
             </div>
@@ -120,10 +125,10 @@ function Landing (props) {
           <div >
             <Configurator current={current} inventory={inventory} />
             {current == 2 ? (
-              <div >
+              <div className="submit-form">
                 {' '}
                 <h3>
-                  {props.vip
+                  {props.vip == 'true'
                     ? 'Enter your details to receive your own personalized Astro!'
                     : 'Register for a chance to win your very own personalized Astro!'}
                 </h3>
@@ -149,7 +154,7 @@ function Landing (props) {
                             string.charAt(0).toUpperCase() + string.slice(1)
                           }
                           key={e}
-                          rows={e == 'address' ? 4 : 1}
+                          rows={e == 'shippingAddress' ? 4 : 1}
                           // autoSize={true}
                           style={{ width: '200px', margin: '5px' }}
                           id={e}
@@ -159,7 +164,6 @@ function Landing (props) {
                     </div>
                   )
                 })}
-                <br />
                 <SubmitOrder config={config} userInfo={userInfo} />
               </div>
             ) : null}
@@ -167,7 +171,7 @@ function Landing (props) {
         ) : null}
         {current == 2 ? (
           <div className='content-center button-container' >
-            <Button className='control-btn' onClick={() => setCurrent(1)}>
+            <Button className='control-btn back' onClick={() => setCurrent(1)}>
               Back
             </Button>
 
@@ -181,7 +185,7 @@ function Landing (props) {
           <AwaitPlayerLoad>
             <div className='content-center' >
               <Button
-                className='control-btn'
+                className='control-btn back'
                 onClick={() => {
                   window.location.reload()
                 }}

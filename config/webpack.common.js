@@ -1,7 +1,7 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const paths = require('./paths');
-const babelConfig = require('./babel.config');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
+const paths = require('./paths')
+const babelConfig = require('./babel.config')
 
 module.exports = {
   // Rules of how webpack will take our files, complie & bundle them for the browser
@@ -30,9 +30,20 @@ module.exports = {
         use: ['file-loader?name=[name].[ext]'],
       },
       {
-        test: /\.(jpe?g|png|woff|woff2|eot|ttf|svg)(\?[a-z0-9=.]+)?$/, 
-        use: 'file-loader?name=fonts/[name].[ext]!static'
-       }
+        test: /\.less$/,
+        use: [{
+            loader: "style-loader"
+        }, {
+            loader: "css-loader"
+        }, {
+            loader: "less-loader",
+            options: {
+              lessOptions: {
+                javascriptEnabled: true
+             }
+            }
+        }]
+}
     ],
   },
   plugins: [
@@ -55,4 +66,4 @@ module.exports = {
       },
     }),
   ],
-};
+}

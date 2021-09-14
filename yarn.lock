@@ -4638,6 +4638,21 @@ cheerio@^1.0.0-rc.3:
     parse5-htmlparser2-tree-adapter "^6.0.1"
     tslib "^2.2.0"
 
+"chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.0, chokidar@^3.4.1, chokidar@^3.4.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
+  integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
+  dependencies:
+    anymatch "~3.1.2"
+    braces "~3.0.2"
+    glob-parent "~5.1.2"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.6.0"
+  optionalDependencies:
+    fsevents "~2.3.2"
+
 chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -4656,21 +4671,6 @@ chokidar@^2.1.8:
     upath "^1.1.1"
   optionalDependencies:
     fsevents "^1.2.7"
-
-chokidar@^3.4.0, chokidar@^3.4.1, chokidar@^3.4.2:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.2.tgz#dba3976fcadb016f66fd365021d91600d01c1e75"
-  integrity sha512-ekGhOnNVPgT77r4K/U3GDhu+FQ2S8TnK/s2KbIGXi0SZWuwkZ2QNyfWdZW+TVfn84DpEP7rLeCt2UI6bJ8GwbQ==
-  dependencies:
-    anymatch "~3.1.2"
-    braces "~3.0.2"
-    glob-parent "~5.1.2"
-    is-binary-path "~2.1.0"
-    is-glob "~4.0.1"
-    normalize-path "~3.0.0"
-    readdirp "~3.6.0"
-  optionalDependencies:
-    fsevents "~2.3.2"
 
 chownr@^1.1.1:
   version "1.1.4"
@@ -8840,6 +8840,13 @@ lazy-universal-dotenv@^3.0.1:
     dotenv "^8.0.0"
     dotenv-expand "^5.1.0"
 
+less-loader@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-10.0.1.tgz#c05aaba68d00400820275f21c2ad87cb9fa9923f"
+  integrity sha512-Crln//HpW9M5CbtdfWm3IO66Cvx1WhZQvNybXgfB2dD/6Sav9ppw+IWqs/FQKPBFO4B6X0X28Z0WNznshgwUzA==
+  dependencies:
+    klona "^2.0.4"
+
 less-loader@^7.3.0:
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/less-loader/-/less-loader-7.3.0.tgz#f9d6d36d18739d642067a05fb5bd70c8c61317e5"
@@ -12073,6 +12080,21 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
+sass-loader@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-12.1.0.tgz#b73324622231009da6fba61ab76013256380d201"
+  integrity sha512-FVJZ9kxVRYNZTIe2xhw93n3xJNYZADr+q69/s98l9nTCrWASo+DR2Ot0s5xTKQDDEosUkatsGeHxcH4QBp5bSg==
+  dependencies:
+    klona "^2.0.4"
+    neo-async "^2.6.2"
+
+sass@^1.40.1:
+  version "1.40.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.40.1.tgz#55d3fc38fe9dc579e7324ce0eb9185bede7992a9"
+  integrity sha512-M6WskYLzTfdZdb09W9SftIScjudL8jNkhdh9z96U+olQaKIcw2Knb6QLL9bUhnuSm4VD+1yJVaO2/ENDPMTtAQ==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -13935,7 +13957,37 @@ webpack@4, webpack@^4.41.0:
     watchpack "^1.7.4"
     webpack-sources "^1.4.1"
 
-webpack@^5.45.1, webpack@^5.9.0:
+webpack@^5.52.1:
+  version "5.52.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.52.1.tgz#2dc1d9029ecb7acfb80da7bf67baab67baa517a7"
+  integrity sha512-wkGb0hLfrS7ML3n2xIKfUIwHbjB6gxwQHyLmVHoAqEQBw+nWo+G6LoHL098FEXqahqximsntjBLuewStrnJk0g==
+  dependencies:
+    "@types/eslint-scope" "^3.7.0"
+    "@types/estree" "^0.0.50"
+    "@webassemblyjs/ast" "1.11.1"
+    "@webassemblyjs/wasm-edit" "1.11.1"
+    "@webassemblyjs/wasm-parser" "1.11.1"
+    acorn "^8.4.1"
+    acorn-import-assertions "^1.7.6"
+    browserslist "^4.14.5"
+    chrome-trace-event "^1.0.2"
+    enhanced-resolve "^5.8.0"
+    es-module-lexer "^0.7.1"
+    eslint-scope "5.1.1"
+    events "^3.2.0"
+    glob-to-regexp "^0.4.1"
+    graceful-fs "^4.2.4"
+    json-parse-better-errors "^1.0.2"
+    loader-runner "^4.2.0"
+    mime-types "^2.1.27"
+    neo-async "^2.6.2"
+    schema-utils "^3.1.0"
+    tapable "^2.1.1"
+    terser-webpack-plugin "^5.1.3"
+    watchpack "^2.2.0"
+    webpack-sources "^3.2.0"
+
+webpack@^5.9.0:
   version "5.50.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.50.0.tgz#5562d75902a749eb4d75131f5627eac3a3192527"
   integrity sha512-hqxI7t/KVygs0WRv/kTgUW8Kl3YC81uyWQSo/7WUs5LsuRw0htH/fCwbVBGCuiX/t4s7qzjXFcf41O8Reiypag==
