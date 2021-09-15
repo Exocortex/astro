@@ -148,11 +148,7 @@
   }
   
   
-  .ant-layout-content{
-    background-image: url('https://solutions-engineering.s3.amazonaws.com/astro/background-gradient-stump.png');
-    background-position: bottom; 
-    background-size: cover;
-  }
+ 
   
   .control-btn{
     border-radius: 50%;
@@ -217,13 +213,30 @@
   .submit-form{
     background-color: #ffffff;
   }
-  
+  .app-footer{
+    display: table
+  }
+ 
+  .footer-logo{
+    height: 120px;
+    float: left
+  }
+  .footer-text{
+    vertical-align: middle;
+    display: table-cell
+  }
   
   
   @media only screen 
     and (min-device-width: 320px) 
     and (max-device-width: 480px)
   {
+    
+    .ant-layout-content{
+      background-image: url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png);
+      background-size:cover;
+      background-position: center;
+    }
       .step-comp{
         margin: auto
       }
@@ -242,10 +255,19 @@
       }
   
   }
-  /* ----------- Non-Retina Screens ----------- */
+  /* ----------- Desktop/laptop screens ----------- */
   @media screen 
     and (min-device-width: 1200px) 
     {
+      .ant-layout-content{
+        background-image: url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png);
+        background-position: bottom; 
+        background-size: cover;
+      }
+      .app-footer{
+        width: 50%;
+        margin: auto
+      }
       .step-comp{
         width: 50%;
         /* text-align: center;
@@ -261,6 +283,7 @@
       .landing-welcome{
         width: 40%;
         margin: auto;
+        height: 60vh;
       }
       .tk-player {
         margin: auto;

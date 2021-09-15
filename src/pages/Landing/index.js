@@ -30,9 +30,11 @@ function Landing (props) {
 
   const startConfig = () => {
     message.info('Select a color and style to make Astro your own!');
-    setCurrent(1)
+    setCurrent(1);
+    document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/foliage-no-astro.png)"
   };
   useEffect(() => {
+    // document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png)"
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })
     fetch('https://astro-api.demo.threekit.com/get-inventory/', {
@@ -99,17 +101,7 @@ function Landing (props) {
               get this awesome Sales Cloud swag. Hit 'next' to start your
               fashion adventure with Astro.
             </p>
-            <p>
-              By registering, you agree to the processing of your personal data
-              by Salesforce as described in the{' '}
-              <a
-                href='https://www.salesforce.com/company/privacy/full_privacy/'
-                target='_blank'
-              >
-                Privacy Statement
-              </a>
-              .
-            </p>
+        
               </div>
 
        
