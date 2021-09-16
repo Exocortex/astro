@@ -126,6 +126,7 @@ function Configurator (props) {
       }
       return false
     })
+    console.log('filtered')
     console.log(filtered)
     let bool
     filtered.forEach(element => {
