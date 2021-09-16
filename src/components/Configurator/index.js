@@ -16,7 +16,7 @@ import {
 } from '../../../threekit/components'
 import { isMobile } from 'react-device-detect'
 
-function Configurator (props) {
+function Configurator(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [color, setColor] = useAttribute('Color')
@@ -38,10 +38,9 @@ function Configurator (props) {
         return { ...logo, colorValue: generateUrlString(logo.value) }
       })
       setDisplayColor({ ...color, values: tempColor })
-      console.log(tempColor)
       setDisplayStyle({ ...style, values: tempLogo })
     }
-  }, [style, color])
+  }, [style, color, displayColor, displayStyle])
 
   let generateColorHex = colorString => {
     switch (colorString) {
@@ -61,7 +60,6 @@ function Configurator (props) {
   }
 
   let generateUrlString = logo => {
-    console.log(logo)
     switch (logo) {
       case 'Salesforce':
         return 'url(https://solutions-engineering.s3.amazonaws.com/media/web-assets/Salesforce+Logo.png)'
@@ -84,7 +82,7 @@ function Configurator (props) {
     }
   }
 
-  useEffect(() => {}, [displayStyle])
+  useEffect(() => { }, [displayStyle])
 
   const openNotification = color => {
     notification.open({
@@ -119,7 +117,7 @@ function Configurator (props) {
       White: generateInventoryArray(props.inventory, 'White'),
     }
     let activeArray = arrayInventory[e]
-    let temp = style
+    let temp = { ...style }
     let filtered = temp.values.filter(value => {
       if (activeArray.includes(value.value)) {
         return true
@@ -129,11 +127,13 @@ function Configurator (props) {
     console.log('filtered')
     console.log(filtered)
     let bool
-    filtered.forEach(element => {
+    filtered = filtered.map(element => {
       if (element.value === style.value) {
         bool = true
       }
-      element.colorValue = generateUrlString(element.value)
+      let e = { ...element }
+      e.colorValue = generateUrlString(element.value)
+      return e
     })
     if (!bool) {
       setStyle(filtered[0].value)
@@ -158,23 +158,23 @@ function Configurator (props) {
                   <div>
                     <center>
 
-                    <ColorSwatch
-                      size='50px'
-                      id='color-options-box'
-                      options={displayColor.values}
-                      handleClick={e => handleColor(e)}
-                      selected={color.value}
-                      title={isMobile ? undefined : 'Select Color'}
-                    ></ColorSwatch>
-                    <ColorSwatch
-                      size='50px'
-                      id='logo-options-box'
-                      options={displayStyle.values}
-                      handleClick={setStyle}
-                      selected={style.value}
-                      title={isMobile ? undefined : 'Select Style'}
+                      <ColorSwatch
+                        size='50px'
+                        id='color-options-box'
+                        options={displayColor.values}
+                        handleClick={e => handleColor(e)}
+                        selected={color.value}
+                        title={isMobile ? undefined : 'Select Color'}
+                      ></ColorSwatch>
+                      <ColorSwatch
+                        size='50px'
+                        id='logo-options-box'
+                        options={displayStyle.values}
+                        handleClick={setStyle}
+                        selected={style.value}
+                        title={isMobile ? undefined : 'Select Style'}
 
-                    ></ColorSwatch>
+                      ></ColorSwatch>
                     </center>
                   </div>
                 ) : null}
