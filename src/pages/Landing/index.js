@@ -13,7 +13,7 @@ import WebFont from 'webfontloader';
 
 const { TextArea } = Input
 
-function Landing (props) {
+function Landing(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [userInfo, setUserInfo] = useState({
@@ -48,15 +48,15 @@ function Landing (props) {
         setInventory(data)
       })
 
-    
+
   }, [])
 
-  function handleChange (e) {
+  function handleChange(e) {
     let keyName = e.target.id
     setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
-  async function saveAndContinue () {
+  async function saveAndContinue() {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
@@ -86,25 +86,25 @@ function Landing (props) {
         {current == 0 ? (
           <div >
             <div className="landing-welcome">
-            <h1>
-              {/* {props.vip == 'true'
+              <h1>
+                {/* {props.vip == 'true'
                 ? 'Enter your details to receive your own personalized Astro!'
                 : 'Register for a chance to win your very own personalized Astro!'} */}
-              Configure-a-character with Sales Cloud!
-            </h1>
-            <h3>
-              Help Astro figure out what to wear and get your very own
-              unique-to-you Astro plushie.
-            </h3>
-            <p>
-              Better hurry! The first _____ people to configure a character will
-              get this awesome Sales Cloud swag. Hit 'next' to start your
-              fashion adventure with Astro.
-            </p>
-        
-              </div>
+                Configure-a-character with Sales Cloud!
+              </h1>
+              <h3>
+                Help Astro figure out what to wear and get your very own
+                unique-to-you Astro plushie.
+              </h3>
+              <p className="left-align">
+                Better hurry! The first _____ people to configure a character will
+                get this awesome Sales Cloud swag. Hit 'next' to start your
+                fashion adventure with Astro.
+              </p>
 
-       
+            </div>
+
+
             <br />
             <div className='content-center'>
               <Button className='control-btn' onClick={startConfig}>
