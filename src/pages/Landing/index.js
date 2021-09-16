@@ -81,7 +81,7 @@ function Landing(props) {
   }
   return (
     <div className="landing">
-      <StepComponent active={current} />
+      <StepComponent active={current} setCurrent={setCurrent} />
       <div className='content'>
         {current == 0 ? (
           <div >
