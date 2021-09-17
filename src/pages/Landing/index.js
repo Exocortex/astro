@@ -9,11 +9,11 @@ import {
   Snapshot,
   AwaitPlayerLoad,
 } from '../../../threekit/components'
-import WebFont from 'webfontloader';
+import WebFont from 'webfontloader'
 
 const { TextArea } = Input
 
-function Landing(props) {
+function Landing (props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [userInfo, setUserInfo] = useState({
@@ -26,16 +26,19 @@ function Landing(props) {
     shippingAddress: undefined,
     vip: undefined,
   })
-  const [inventory, setInventory] = useState([]);
+  const [inventory, setInventory] = useState([])
   const [allGone, setAllGone] = useState(false)
-  function handleAllGone(){
-    setAllGone(true);
-  } 
+  function handleAllGone () {
+    setAllGone(true)
+  }
   const startConfig = () => {
-    message.info('Select a color and style to make Astro your own!');
-    setCurrent(1);
-    document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/foliage-no-astro.png)"
-  };
+    message.info('Select a color and style to make Astro your own!')
+    setCurrent(1)
+    document.getElementsByClassName(
+      'ant-layout-content'
+    )[0].style.backgroundImage =
+      'url(https://solutions-engineering.s3.amazonaws.com/astro/foliage-no-astro.png)'
+  }
   useEffect(() => {
     // document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png)"
     // Update the document title using the browser API
@@ -50,16 +53,14 @@ function Landing(props) {
       .then(data => {
         setInventory(data)
       })
-
-
   }, [])
 
-  function handleChange(e) {
+  function handleChange (e) {
     let keyName = e.target.id
     setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
-  async function saveAndContinue() {
+  async function saveAndContinue () {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
@@ -78,35 +79,45 @@ function Landing(props) {
     // NEED THIS TO WORK
     // console.log(response)
     setConfig(response)
+    window.config = response
     setCurrent(2)
+    document.getElementsByClassName(
+      'content-center'
+    )[0].parentElement.style.width = '45%'
+
     // document.getElementById('threekit-player').style.width = '20%'
     // document.getElementById('threekit-player').style.float = 'right'
   }
+  function moveToStepOne () {
+    document.getElementsByClassName(
+      'content-center'
+    )[0].parentElement.style.width = '70%'
+    setCurrent(1)
+  }
   return (
-    <div className="landing">
-      <StepComponent active={current} setCurrent={setCurrent} />
+    <div className='landing'>
+      <StepComponent active={current} setCurrent={setCurrent} config={config} />
       <div className='content'>
         {current == 0 ? (
-          <div >
-            <div className="landing-welcome">
+          <div>
+            <div className='landing-welcome'>
               <h1>
                 {/* {props.vip == 'true'
                 ? 'Enter your details to receive your own personalized Astro!'
                 : 'Register for a chance to win your very own personalized Astro!'} */}
-                Configure-a-character with Sales Cloud!
+                Configure-a-Character with Sales Cloud!
               </h1>
               <h3>
                 Help Astro figure out what to wear and get your very own
                 unique-to-you Astro plushie.
               </h3>
-              <p className="left-align">
-                Better hurry! The first _____ people to configure a character will
-                get this awesome Sales Cloud swag. Hit 'next' to start your
-                fashion adventure with Astro.
+              <p className='left-align'>
+                Better hurry! The first 2000 Eligible Participants who complete
+                their Astro and submit a valid entry form on or before December
+                31, 2021 may be sent a plush version of their Astro. Hit “next”
+                to start your fashion adventure with Astro.
               </p>
-
             </div>
-
 
             <br />
             <div className='content-center'>
@@ -117,10 +128,14 @@ function Landing(props) {
           </div>
         ) : null}
         {current == 1 || current == 2 ? (
-          <div >
-            <Configurator current={current} inventory={inventory} isAllGone={() => handleAllGone()}/>
+          <div>
+            <Configurator
+              current={current}
+              inventory={inventory}
+              isAllGone={() => handleAllGone()}
+            />
             {current == 2 ? (
-              <div className="submit-form">
+              <div className='submit-form'>
                 {' '}
                 <h3>
                   {props.vip == 'true'
@@ -141,7 +156,7 @@ function Landing(props) {
                 {Object.keys(userInfo).map(e => {
                   let string = e.replace(/([A-Z])/g, ' $1')
                   return (
-                    <div >
+                    <div style={{margin: 'auto'}}>
                       {e == 'vip' ? null : (
                         <TextArea
                           onChange={handleChange}
@@ -151,7 +166,7 @@ function Landing(props) {
                           key={e}
                           rows={e == 'shippingAddress' ? 4 : 1}
                           // autoSize={true}
-                          style={{ width: '200px', margin: '5px' }}
+                          style={{ width: '300px', margin: '5px' }}
                           id={e}
                           value={userInfo[e]}
                         />
@@ -159,14 +174,14 @@ function Landing(props) {
                     </div>
                   )
                 })}
-                <SubmitOrder config={config} userInfo={userInfo} />
+                <SubmitOrder config={window.config} userInfo={userInfo} />
               </div>
             ) : null}
           </div>
         ) : null}
         {current == 2 ? (
-          <div className='content-center button-container' >
-            <Button className='control-btn back' onClick={() => setCurrent(1)}>
+          <div className='content-center button-container'>
+            <Button className='control-btn back' onClick={() => moveToStepOne()}>
               Back
             </Button>
 
@@ -178,7 +193,7 @@ function Landing(props) {
 
         {current == 1 ? (
           <AwaitPlayerLoad>
-            <div className='content-center' >
+            <div className='content-center'>
               <Button
                 className='control-btn back'
                 onClick={() => {
@@ -187,10 +202,15 @@ function Landing(props) {
               >
                 Back
               </Button>
-{allGone ? null : (<Button className='control-btn' onClick={() => saveAndContinue()}>
-                Next
-              </Button>)}
-             
+              {allGone ? null : (
+                <Button
+                  className='control-btn'
+                  onClick={() => saveAndContinue()}
+                >
+                  Next
+                </Button>
+              )}
+
               {/* <Button onClick={() => getThumbnail()}>Get Thumbnail</Button> */}
 
               {/* <Snapshot /> */}
