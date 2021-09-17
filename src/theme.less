@@ -39,6 +39,10 @@ body {
   font-family: 'Salesforce Regular', 'Salesforce Regular';
 }
 
+.small-text {
+  font-size: 8px;
+}
+
 .bold {
   // font-family: "Louis Vuitton Bold", "Helvetica Neue", "Helvetica", Arial,
   //   sans-serif;
@@ -209,6 +213,11 @@ body {
   // width: 100vw;
   height: 5%;
   text-align: center;
+  border-radius: 50px;
+  border-collapse: separate !important;
+  overflow: hidden !important;
+  perspective: 1px !important;
+  z-index: 1000;
 }
 .app-footer:before {
   border-top-left-radius: 500px 40px;
@@ -315,7 +324,6 @@ margin: 5px;
   position: absolute;
   z-index: 100;
   top: 40%;
-
 }
 
 :not(:root):fullscreen::backdrop {
@@ -329,12 +337,11 @@ margin: 5px;
   background-color: #78c4a2;
   margin: 0 auto 0 auto;
   border-radius: 25px;
-  opacity: .6;
+  opacity: 0.6;
   padding: 5px;
   z-index: 10;
   transform-origin: bottom;
   position: relative;
-
 }
 
 .bounce-2 {
@@ -344,15 +351,14 @@ margin: 5px;
 
 @keyframes bounce-2 {
   0% {
-      transform: translateX(0);
+    transform: translateX(0);
   }
 
   50% {
-      transform: translateX(-100px);
+    transform: translateX(-100px);
   }
 
   100% {
-      transform: translateX(0);
+    transform: translateX(0);
   }
-
 }

@@ -46,6 +46,7 @@ function StepComponent (props) {
           title='Submit'
           onClick={() => (props.active == 1 ? moveForward() : null)}
         />
+
       </Steps>
     </div>
   )
