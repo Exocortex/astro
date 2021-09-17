@@ -9,11 +9,11 @@ function StepComponent(props) {
     <div className='step-comp'>
       <Steps current={props.active}>
         <Step title='Intro' onClick={() => {
-                  window.location.reload()
-                }} />
+          window.location.reload()
+        }} />
         <Step title='Build' onClick={() => props.setCurrent(1)} />
 
-        <Step title='Submit' onClick={() => props.setCurrent(2)} />
+        <Step title='Submit' />
       </Steps>
     </div>
   )
