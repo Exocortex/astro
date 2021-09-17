@@ -1,6 +1,29 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button, notification } from 'antd'
 
+function finishIt(){
+  if(window.config == undefined){
+    notification.open({
+      message: 'Error',
+      description: 'You have not configured an Astro, please go home and start from there!',
+      onClick: () => {
+        console.log('Notification Clicked!')
+      },
+    })
+  } else{
+    navigator.clipboard.writeText(
+      window.location.origin + '/share?tkcsid=' + window.config.shortId
+    )
+    notification.open({
+      message: 'URL Copied to Clipboard',
+      description: 'Share this digital Astro with your friends and colleagues',
+      onClick: () => {
+        console.log('Notification Clicked!')
+      },
+    })
+  }
+
+}
 function Finish (props) {
   return (
     <div className='finish-screen'>
@@ -12,9 +35,15 @@ function Finish (props) {
           31st, 2021. Until then, check out the amazing products that power this
           experience, Sales Cloud and Revenue Cloud.
         </p>
-        <Button className="final-btn">Learn More</Button>
-        <Button className="final-btn">Dreamforce Home</Button>
-
+        <Button className='final-btn'>Learn More</Button>
+        <Button className='final-btn'>Dreamforce Home</Button>
+        {window.config == undefined ? null :  <Button
+          className='final-btn'
+          onClick={() => finishIt()}
+        >
+          Share your design!
+        </Button>}
+       
       </div>
     </div>
   )
