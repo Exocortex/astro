@@ -16,6 +16,7 @@ function App(props) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let enableAR = params.get('enableAR');
+
   return (
     <div className='App'>
       {enableAR ? <ReturnConfig {...props} /> : <Layout className='layout'>

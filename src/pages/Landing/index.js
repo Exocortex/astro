@@ -27,7 +27,10 @@ function Landing(props) {
     vip: undefined,
   })
   const [inventory, setInventory] = useState([]);
-
+  const [allGone, setAllGone] = useState(false)
+  function handleAllGone(){
+    setAllGone(true);
+  } 
   const startConfig = () => {
     message.info('Select a color and style to make Astro your own!');
     setCurrent(1);
@@ -115,7 +118,7 @@ function Landing(props) {
         ) : null}
         {current == 1 || current == 2 ? (
           <div >
-            <Configurator current={current} inventory={inventory} />
+            <Configurator current={current} inventory={inventory} isAllGone={() => handleAllGone()}/>
             {current == 2 ? (
               <div className="submit-form">
                 {' '}
@@ -184,10 +187,10 @@ function Landing(props) {
               >
                 Back
               </Button>
-
-              <Button className='control-btn' onClick={() => saveAndContinue()}>
+{allGone ? null : (<Button className='control-btn' onClick={() => saveAndContinue()}>
                 Next
-              </Button>
+              </Button>)}
+             
               {/* <Button onClick={() => getThumbnail()}>Get Thumbnail</Button> */}
 
               {/* <Snapshot /> */}

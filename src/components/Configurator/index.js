@@ -16,7 +16,7 @@ import {
 } from '../../../threekit/components'
 import { isMobile } from 'react-device-detect'
 
-function Configurator(props) {
+function Configurator (props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [color, setColor] = useAttribute('Color')
@@ -24,11 +24,8 @@ function Configurator(props) {
   const [displayColor, setDisplayColor] = useState()
   const [displayStyle, setDisplayStyle] = useState()
   const [step, setStep] = useState(0)
-  const loading = usePlayerLoadingStatus();
-
-
-
-
+  const loading = usePlayerLoadingStatus()
+ 
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
       let tempColor = color.values.map(e => {
@@ -39,6 +36,17 @@ function Configurator(props) {
       })
       setDisplayColor({ ...color, values: tempColor })
       setDisplayStyle({ ...style, values: tempLogo })
+    }
+
+    if (document.getElementById('hand-indicator')) {
+      document.body.addEventListener(
+        'mousedown',
+        () => (document.getElementById('hand-container').style.display = 'none')
+      )
+      document.body.addEventListener(
+        'touchstart',
+        () => (document.getElementById('hand-container').style.display = 'none')
+      )
     }
   }, [style, color, displayColor, displayStyle])
 
@@ -82,12 +90,12 @@ function Configurator(props) {
     }
   }
 
-  useEffect(() => { }, [displayStyle])
+  useEffect(() => {}, [displayStyle])
 
   const openNotification = color => {
     notification.open({
       message: 'Out of Stock',
-      description: `Sorry ${style.value} in ${color} is out of stock!`,
+      description: `Sorry Astro with ${style.value} in ${color} have all been spoken for!`,
       onClick: () => {
         console.log('Notification Clicked!')
       },
@@ -136,18 +144,27 @@ function Configurator(props) {
       return e
     })
     if (!bool) {
-      setStyle(filtered[0].value)
-      openNotification(e)
+      if (!filtered[0]) {
+        openNotification(e);
+        props.isAllGone();
+      } else {
+        setStyle(filtered[0].value)
+      }
     }
+
     setDisplayStyle({ ...displayStyle, values: filtered })
   }
 
   return (
     <div
-      style={isMobile ? {} : {
-        float: props.current == 2 ? 'left' : 'none',
-        width: props.current == 2 ? '70%' : '100%',
-      }}
+      style={
+        isMobile
+          ? {}
+          : {
+              float: props.current == 2 ? 'left' : 'none',
+              width: props.current == 2 ? '70%' : '100%',
+            }
+      }
     >
       <div className='content-center'>
         <div>
@@ -157,7 +174,6 @@ function Configurator(props) {
                 {displayColor ? (
                   <div>
                     <center>
-
                       <ColorSwatch
                         size='50px'
                         id='color-options-box'
@@ -173,7 +189,6 @@ function Configurator(props) {
                         handleClick={setStyle}
                         selected={style.value}
                         title={isMobile ? undefined : 'Select Style'}
-
                       ></ColorSwatch>
                     </center>
                   </div>
@@ -181,8 +196,19 @@ function Configurator(props) {
               </div>
             ) : null}
             {/* <div > */}
+
             <Player></Player>
             <Loading />
+            <AwaitPlayerLoad>
+              <div className='stage' id='hand-container'>
+                <div id='hand-indicator' className='hand bounce-2'>
+                  <img
+                    style={{ height: '30px', width: '30px' }}
+                    src='https://solutions-engineering.s3.amazonaws.com/media/web-assets/hand.png'
+                  />
+                </div>
+              </div>
+            </AwaitPlayerLoad>
 
             {/* </div> */}
           </div>
