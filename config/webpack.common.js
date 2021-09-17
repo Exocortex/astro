@@ -39,7 +39,12 @@ module.exports = {
             loader: "less-loader",
             options: {
               lessOptions: {
-                javascriptEnabled: true
+                javascriptEnabled: true,
+                   modifyVars: {
+                         'text-color': '#030859',
+                       
+                       javascriptEnabled: true,
+                     },
              }
             }
         }]

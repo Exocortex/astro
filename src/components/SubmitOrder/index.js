@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Result, notification, Modal } from 'antd'
+import { useHistory } from "react-router-dom";
 
 function SubmitOrder (props) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const history = useHistory();
 
   const showModal = () => {
     setIsModalVisible(true)
@@ -19,7 +21,7 @@ function SubmitOrder (props) {
 
   function shareLink () {
     navigator.clipboard.writeText(
-      window.location.href + 'share?tkcsid=' + props.config.shortId
+      window.location.href + 'share?tkcsid=' + window.config.shortId  
     )
     notification.open({
       message: 'URL Copied to Clipboard',
@@ -29,8 +31,11 @@ function SubmitOrder (props) {
       },
     })
   }
-
+function goHome(){
+  history.push("/finished")
+}
   async function submit () {
+  
     const { controller } = window.threekit
     const findUndefined = element => element == undefined
     let arr = Object.values(props.userInfo)
@@ -51,14 +56,15 @@ function SubmitOrder (props) {
         metadata: props.userInfo,
         cart: [
           {
-            configurationId: props.config.id,
+            configurationId: window.config.id ,
             count: 1,
             metadata: {},
           },
         ],
       })
       console.log(response)
-      showModal()
+      goHome();
+
 
       setIsSubmitted(true)
     }
