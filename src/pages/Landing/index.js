@@ -32,8 +32,12 @@ function Landing (props) {
     setAllGone(true)
   }
   const startConfig = () => {
-    message.info(isMobile ? 'Tap swatches once to see see info and again to apply!' : 'Select a color and style to make Astro your own!')
-    setCurrent(1);
+    message.info(
+      isMobile
+        ? 'Tap swatches once to see see info and again to apply!'
+        : 'Select a color and style to make Astro your own!'
+    )
+    setCurrent(1)
     document.getElementsByClassName(
       'content-center'
     )[0].parentElement.style.display = 'inline'
@@ -111,13 +115,13 @@ function Landing (props) {
                 Configure-a-Character with Sales Cloud!
               </h1>
               <h3>
-                Help Astro figure out what to wear and get your very own
-                unique-to-you Astro plushie.
+                Help Astro figure out what to wear in this experience powered by
+                Salesforce Revenue Cloud and Threekit!
               </h3>
               <p className='left-align'>
                 Better hurry! The first 2000 Eligible Participants who complete
                 their Astro and submit a valid entry form on or before December
-                31, 2021 may be sent a plush version of their Astro. Hit “next”
+                31, 2021 may be sent a plush version of their Astro! Hit “next”
                 to start your fashion adventure with Astro.
               </p>
             </div>
@@ -141,25 +145,24 @@ function Landing (props) {
               <div className='submit-form'>
                 {' '}
                 <h3>
-                  {props.vip == 'true'
-                    ? 'Enter your details to receive your own personalized Astro!'
-                    : 'Register for a chance to win your very own personalized Astro!'}
+                  Almost there! Fill out this form for the chance to get your
+                  very own Astro
                 </h3>
                 <p>
                   By registering, you agree to the processing of your personal
-                  data by Salesforce as described in the{' '}
-                  <a
+                  data by Salesforce as described in the  <a
                     href='https://www.salesforce.com/company/privacy/full_privacy/'
                     target='_blank'
                   >
                     Privacy Statement
-                  </a>
-                  .
+                  </a> and
+                  giveaway terms and conditions. 
+        
                 </p>
                 {Object.keys(userInfo).map(e => {
                   let string = e.replace(/([A-Z])/g, ' $1')
                   return (
-                    <div style={{margin: 'auto'}}>
+                    <div style={{ margin: 'auto' }}>
                       {e == 'vip' ? null : (
                         <TextArea
                           onChange={handleChange}
@@ -184,7 +187,10 @@ function Landing (props) {
         ) : null}
         {current == 2 ? (
           <div className='content-center button-container'>
-            <Button className='control-btn back' onClick={() => moveToStepOne()}>
+            <Button
+              className='control-btn back'
+              onClick={() => moveToStepOne()}
+            >
               Back
             </Button>
 
