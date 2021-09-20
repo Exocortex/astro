@@ -3,7 +3,7 @@ import { Spin } from 'antd'
 
 import { Player } from '../../../threekit/components'
 import Loading from "../../components/Loading"
-function ReturnConfig (props) {
+function ReturnConfig(props) {
   useEffect(() => {
     window.loadingProgress = undefined
   })
@@ -12,7 +12,6 @@ function ReturnConfig (props) {
       <div className='content'>
         <div>
           <Player style={{ height: '50vh' }} />
-         <Loading/>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ import {
 } from '../../../threekit/components'
 import { isMobile } from 'react-device-detect'
 
-function Configurator (props) {
+function Configurator(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [color, setColor] = useAttribute('Color')
@@ -25,7 +25,7 @@ function Configurator (props) {
   const [displayStyle, setDisplayStyle] = useState()
   const [step, setStep] = useState(0)
   const loading = usePlayerLoadingStatus()
- 
+
   useEffect(() => {
     if (color && (!displayColor || !displayStyle)) {
       let tempColor = color.values.map(e => {
@@ -68,6 +68,7 @@ function Configurator (props) {
   }
 
   let generateUrlString = logo => {
+    console.log(logo)
     switch (logo) {
       case 'Salesforce':
         return 'url(https://solutions-engineering.s3.amazonaws.com/media/web-assets/Salesforce+Logo.png)'
@@ -84,13 +85,19 @@ function Configurator (props) {
       case 'Pride':
         return 'url("https://solutions-engineering.s3.amazonaws.com/media/web-assets/Pride.png")'
         break
+      case 'Dreamforce':
+        return 'url("https://solutions-engineering.s3.amazonaws.com/astro/Dreamforce-2021-Cloud-Logo-RGB+(1).png")'
+        break
+      case 'Hot Air Balloon':
+        return 'url("https://solutions-engineering.s3.amazonaws.com/astro/SF-logo-hot-air-balloon+(1)-1.png")'
+        break
       default:
         return '#ff0000'
         break
     }
   }
 
-  useEffect(() => {}, [displayStyle])
+  useEffect(() => { }, [displayStyle])
 
   const openNotification = color => {
     notification.open({
@@ -114,7 +121,8 @@ function Configurator (props) {
   }
 
   let handleColor = async e => {
-    setColor(e)
+    await setColor(e)
+    console.log("syles line 118", style.values)
     let tempLogo = style.values.map(logo => {
       return { ...logo, colorValue: generateUrlString(logo.value) }
     })
@@ -161,9 +169,9 @@ function Configurator (props) {
         isMobile
           ? {}
           : {
-              float: props.current == 2 ? 'left' : 'none',
-              width: props.current == 2 ? '70%' : '100%',
-            }
+            float: props.current == 2 ? 'left' : 'none',
+            width: props.current == 2 ? '70%' : '100%',
+          }
       }
     >
       <div className='content-center'>

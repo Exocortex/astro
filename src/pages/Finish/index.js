@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, notification } from 'antd'
 import axios from "axios";
 
-function finishIt () {
+function finishIt() {
   if (window.config == undefined) {
     notification.open({
       message: 'Error',
@@ -25,23 +25,23 @@ function finishIt () {
     })
   }
 }
-function Finish (props) {
+function Finish(props) {
   const [img, setImg] = useState()
-async function getImage(){
-  axios.post('https://astro-api.demo.threekit.com/get-image', {
-    config: encodeURI(JSON.stringify(window.config.variant)),
-  })
-  .then(function (response) {
-    console.log(response);
-    setImg(response.data)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  async function getImage() {
+    axios.post('https://astro-api.demo.threekit.com/get-image', {
+      config: encodeURI(JSON.stringify(window.config.variant)),
+    })
+      .then(function (response) {
+        console.log(response);
+        setImg(response.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
 
- 
-}
+
+  }
   useEffect(() => {
     getImage();
   })
@@ -55,11 +55,11 @@ async function getImage(){
           31st, 2021. Until then, check out the amazing products that power this
           experience, Sales Cloud and Revenue Cloud.
         </p>
-        
-        {img ? <img src={img} style={{height: '300px'}} /> : null}
-        <br/>
-        <Button className='final-btn'>Learn More</Button>
-        <Button className='final-btn'>Dreamforce Home</Button>
+
+        {img ? <img src={img} style={{ height: '300px' }} /> : null}
+        <br />
+        <Button className='final-btn' onClick={() => window.open('https://www.salesforce.com/products/sales-cloud/overview/')}>Learn More</Button>
+        <Button className='final-btn' onClick={() => window.open('https://www.salesforce.com/dreamforce/')}>Dreamforce Home</Button>
         {window.config == undefined ? null : (
           <Button className='final-btn' onClick={() => finishIt()}>
             Share your design!

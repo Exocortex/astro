@@ -3,6 +3,8 @@ import { Input, Button, message } from 'antd'
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import Configurator from '../../components/Configurator'
+import ReactGA from 'react-ga';
+
 import {
   Player,
   Form,
@@ -13,7 +15,7 @@ import WebFont from 'webfontloader'
 import { isMobile } from 'react-device-detect'
 const { TextArea } = Input
 
-function Landing (props) {
+function Landing(props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [userInfo, setUserInfo] = useState({
@@ -28,7 +30,7 @@ function Landing (props) {
   })
   const [inventory, setInventory] = useState([])
   const [allGone, setAllGone] = useState(false)
-  function handleAllGone () {
+  function handleAllGone() {
     setAllGone(true)
   }
   const startConfig = () => {
@@ -47,6 +49,9 @@ function Landing (props) {
       'url(https://solutions-engineering.s3.amazonaws.com/astro/foliage-no-astro.png)'
   }
   useEffect(() => {
+    ReactGA.initialize("UA-63905846-9");
+    ReactGA.set({ dimension1: "Astro - Dreamforce" });
+    ReactGA.pageview('Configure Astro - Landing & Config')
     // document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png)"
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })
@@ -62,12 +67,12 @@ function Landing (props) {
       })
   }, [])
 
-  function handleChange (e) {
+  function handleChange(e) {
     let keyName = e.target.id
     setUserInfo({ ...userInfo, [keyName]: e.target.value })
   }
 
-  async function saveAndContinue () {
+  async function saveAndContinue() {
     const { controller } = window.threekit
 
     const response = await controller.saveConfiguration()
@@ -95,7 +100,7 @@ function Landing (props) {
     // document.getElementById('threekit-player').style.width = '20%'
     // document.getElementById('threekit-player').style.float = 'right'
   }
-  function moveToStepOne () {
+  function moveToStepOne() {
     document.getElementsByClassName(
       'content-center'
     )[0].parentElement.style.display = 'inline'
@@ -156,8 +161,8 @@ function Landing (props) {
                   >
                     Privacy Statement
                   </a> and
-                  giveaway terms and conditions. 
-        
+                  giveaway terms and conditions.
+
                 </p>
                 {Object.keys(userInfo).map(e => {
                   let string = e.replace(/([A-Z])/g, ' $1')
