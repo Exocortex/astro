@@ -7,7 +7,7 @@ function StepComponent (props) {
   function moveToStepOne () {
     document.getElementsByClassName(
       'content-center'
-    )[0].parentElement.style.width = '70%'
+    )[0].parentElement.style.display = 'inline'
     setCurrent(1)
   }
   async function moveForward () {
@@ -16,9 +16,9 @@ function StepComponent (props) {
     props.setCurrent(2)
     const response = await controller.saveConfiguration()
     window.config = response;
-    isMobile ? null : document.getElementsByClassName(
+    document.getElementsByClassName(
       'content-center'
-    )[0].parentElement.style.width = '45%'
+    )[0].parentElement.style.display = 'none'
    
   }
   return (
@@ -33,7 +33,10 @@ function StepComponent (props) {
         <Step
           title='Build'
           onClick={() => {
-            props.setCurrent(1)
+            props.setCurrent(1);
+            document.getElementsByClassName(
+              'content-center'
+            )[0].parentElement.style.display = 'inline'
             document.getElementsByClassName(
               'ant-layout-content'
             )[0].style.backgroundImage =

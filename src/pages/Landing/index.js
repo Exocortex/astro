@@ -10,7 +10,7 @@ import {
   AwaitPlayerLoad,
 } from '../../../threekit/components'
 import WebFont from 'webfontloader'
-
+import { isMobile } from 'react-device-detect'
 const { TextArea } = Input
 
 function Landing (props) {
@@ -32,8 +32,11 @@ function Landing (props) {
     setAllGone(true)
   }
   const startConfig = () => {
-    message.info('Select a color and style to make Astro your own!')
-    setCurrent(1)
+    message.info(isMobile ? 'Tap swatches once to see see info and again to apply!' : 'Select a color and style to make Astro your own!')
+    setCurrent(1);
+    document.getElementsByClassName(
+      'content-center'
+    )[0].parentElement.style.display = 'inline'
     document.getElementsByClassName(
       'ant-layout-content'
     )[0].style.backgroundImage =
@@ -83,7 +86,7 @@ function Landing (props) {
     setCurrent(2)
     document.getElementsByClassName(
       'content-center'
-    )[0].parentElement.style.width = '45%'
+    )[0].parentElement.style.display = 'none'
 
     // document.getElementById('threekit-player').style.width = '20%'
     // document.getElementById('threekit-player').style.float = 'right'
@@ -91,7 +94,7 @@ function Landing (props) {
   function moveToStepOne () {
     document.getElementsByClassName(
       'content-center'
-    )[0].parentElement.style.width = '70%'
+    )[0].parentElement.style.display = 'inline'
     setCurrent(1)
   }
   return (

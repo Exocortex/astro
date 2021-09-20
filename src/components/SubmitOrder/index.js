@@ -66,7 +66,7 @@ function goHome(){
       goHome();
 
 
-      setIsSubmitted(true)
+      // setIsSubmitted(true)
     }
   }
   return (

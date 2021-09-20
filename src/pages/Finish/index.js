@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, notification } from 'antd'
+import axios from "axios";
 
-function finishIt(){
-  if(window.config == undefined){
+function finishIt () {
+  if (window.config == undefined) {
     notification.open({
       message: 'Error',
-      description: 'You have not configured an Astro, please go home and start from there!',
+      description:
+        'You have not configured an Astro, please go home and start from there!',
       onClick: () => {
         console.log('Notification Clicked!')
       },
     })
-  } else{
+  } else {
     navigator.clipboard.writeText(
       window.location.origin + '/share?tkcsid=' + window.config.shortId
     )
@@ -22,9 +24,27 @@ function finishIt(){
       },
     })
   }
-
 }
 function Finish (props) {
+  const [img, setImg] = useState()
+async function getImage(){
+  axios.post('https://astro-api.demo.threekit.com/get-image', {
+    config: encodeURI(JSON.stringify(window.config.variant)),
+  })
+  .then(function (response) {
+    console.log(response);
+    setImg(response.data)
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+
+ 
+}
+  useEffect(() => {
+    getImage();
+  })
   return (
     <div className='finish-screen'>
       <div className='finish-content'>
@@ -35,15 +55,16 @@ function Finish (props) {
           31st, 2021. Until then, check out the amazing products that power this
           experience, Sales Cloud and Revenue Cloud.
         </p>
+        
+        {img ? <img src={img} style={{height: '300px'}} /> : null}
+        <br/>
         <Button className='final-btn'>Learn More</Button>
         <Button className='final-btn'>Dreamforce Home</Button>
-        {window.config == undefined ? null :  <Button
-          className='final-btn'
-          onClick={() => finishIt()}
-        >
-          Share your design!
-        </Button>}
-       
+        {window.config == undefined ? null : (
+          <Button className='final-btn' onClick={() => finishIt()}>
+            Share your design!
+          </Button>
+        )}
       </div>
     </div>
   )
