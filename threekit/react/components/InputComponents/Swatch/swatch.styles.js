@@ -36,10 +36,10 @@ export const SwatchOption = styled.div`
 
   transition: all 0.3s;
 
-  &:hover {
-    border: 1px solid ${(props) => props.theme.primaryColor};
-    color: ${(props) => (props.selected ? '#fff' : props.theme.primaryColor)};
-  }
+  // &:hover {
+  //   border: 1px solid ${(props) => props.theme.primaryColor};
+  //   color: ${(props) => (props.selected ? '#fff' : props.theme.primaryColor)};
+  // }
 
   & > div {
     & > div:nth-child(1) {

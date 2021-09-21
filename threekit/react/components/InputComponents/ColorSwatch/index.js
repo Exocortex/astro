@@ -14,6 +14,7 @@ import { CheckOutlined } from '@ant-design/icons';
 import { regularToKebabCase } from '../../../../utils';
 import { ATTRIBUTE_TYPES } from '../../../../constants';
 import defaultClassName, { classPrefix } from '../classNames';
+import { isMobile } from 'react-device-detect';
 
 export const ColorSwatch = (props) => {
   const {
@@ -48,8 +49,23 @@ export const ColorSwatch = (props) => {
         {options.map((option, i) => {
           if (option.disabled && hideDisabled) return null;
           let cls = `${className}-option option-${i + 1} ${option.value}`;
-          return (
-            <Tooltip key={i} placement="left" title={option.label}>
+            if(isMobile){
+              return( <Option
+                size={size}
+                className={cls}
+                isPlayerLoading={isPlayerLoading}
+                color={option.colorValue}
+                onClick={() => handleClick(option.value)}
+              >
+                {option.value === selected && (
+                  <div className={`${cls} selected`}>
+                    <CheckOutlined />
+                  </div>
+                )}
+              </Option>)
+             
+            } else{
+              return(<Tooltip key={i} placement="left" title={option.label}>
               <Option
                 size={size}
                 className={cls}
@@ -63,8 +79,9 @@ export const ColorSwatch = (props) => {
                   </div>
                 )}
               </Option>
-            </Tooltip>
-          );
+            </Tooltip>)
+            }
+           
         })}
       </Content>
     </Wrapper>

@@ -34,11 +34,7 @@ function Landing(props) {
     setAllGone(true)
   }
   const startConfig = () => {
-    message.info(
-      isMobile
-        ? 'Tap swatches once to see see info and again to apply!'
-        : 'Select a color and style to make Astro your own!'
-    )
+    message.info('Select a color and style to make Astro your own!')
     setCurrent(1)
     document.getElementsByClassName(
       'content-center'
@@ -124,7 +120,7 @@ function Landing(props) {
                 Salesforce Revenue Cloud and Threekit!
               </h3>
               <p className='left-align'>
-                Better hurry! The first 2000 Eligible Participants who complete
+                Better hurry! The first 2,000 Eligible Participants who complete
                 their Astro and submit a valid entry form on or before December
                 31, 2021 may be sent a plush version of their Astro! Hit “next”
                 to start your fashion adventure with Astro.
