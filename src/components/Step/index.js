@@ -1,9 +1,14 @@
 import React from 'react'
 import { Steps } from 'antd'
-import { isMobile } from 'react-device-detect'
+import { isMobile, getUA } from 'react-device-detect'
+import { useEffect } from 'react'
+import { useForm } from 'rc-field-form'
 const { Step } = Steps
 
+function eject () {}
+
 function StepComponent (props) {
+  
   function moveToStepOne () {
     document.getElementsByClassName(
       'content-center'
@@ -12,14 +17,13 @@ function StepComponent (props) {
   }
   async function moveForward () {
     const { controller } = window.threekit
- 
+
     props.setCurrent(2)
     const response = await controller.saveConfiguration()
-    window.config = response;
+    window.config = response
     document.getElementsByClassName(
       'content-center'
     )[0].parentElement.style.display = 'none'
-   
   }
   return (
     <div className='step-comp'>
@@ -33,7 +37,7 @@ function StepComponent (props) {
         <Step
           title='Build'
           onClick={() => {
-            props.setCurrent(1);
+            props.setCurrent(1)
             document.getElementsByClassName(
               'content-center'
             )[0].parentElement.style.display = 'inline'
@@ -41,7 +45,6 @@ function StepComponent (props) {
               'ant-layout-content'
             )[0].style.backgroundImage =
               'url(https://solutions-engineering.s3.amazonaws.com/astro/foliage-no-astro.png)'
-         
           }}
         />
 
@@ -49,7 +52,6 @@ function StepComponent (props) {
           title='Submit'
           onClick={() => (props.active == 1 ? moveForward() : null)}
         />
-
       </Steps>
     </div>
   )

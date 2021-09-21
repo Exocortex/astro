@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Input, Button, message } from 'antd'
+import { Input, Button, message, notification } from 'antd'
 import StepComponent from '../../components/Step'
 import SubmitOrder from '../../components/SubmitOrder'
 import Configurator from '../../components/Configurator'
@@ -12,7 +12,7 @@ import {
   AwaitPlayerLoad,
 } from '../../../threekit/components'
 import WebFont from 'webfontloader'
-import { isMobile } from 'react-device-detect'
+import { isMobile, getUA } from 'react-device-detect'
 const { TextArea } = Input
 
 function Landing(props) {
@@ -48,6 +48,17 @@ function Landing(props) {
     ReactGA.initialize("UA-63905846-9");
     ReactGA.set({ dimension1: "Astro - Dreamforce" });
     ReactGA.pageview('Configure Astro - Landing & Config')
+
+    let ua = JSON.stringify(getUA)
+    if (ua.includes('LinkedIn')) {
+      notification.open({
+        message: 'Please visit in a browser',
+        description: `For the best AR experience, please visit in your mobile browser.`,
+        onClick: () => {
+          console.log('Notification Clicked!')
+        },
+      })
+    }
     // document.getElementsByClassName('ant-layout-content')[0].style.backgroundImage = "url(https://solutions-engineering.s3.amazonaws.com/astro/astro-sweater-design.png)"
     // Update the document title using the browser API
     setUserInfo({ ...userInfo, vip: props.vip })

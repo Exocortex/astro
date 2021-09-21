@@ -14,9 +14,9 @@ import {
   AwaitPlayerLoad,
   TwoCol,
 } from '../../../threekit/components'
-import { isMobile } from 'react-device-detect'
+import { isMobile, getUA } from 'react-device-detect'
 
-function Configurator(props) {
+function Configurator (props) {
   const [current, setCurrent] = useState(0)
   const [config, setConfig] = useState()
   const [color, setColor] = useAttribute('Color')
@@ -97,7 +97,9 @@ function Configurator(props) {
     }
   }
 
-  useEffect(() => { }, [displayStyle])
+  useEffect(() => {
+  
+  }, [displayStyle])
 
   const openNotification = color => {
     notification.open({
@@ -122,7 +124,7 @@ function Configurator(props) {
 
   let handleColor = async e => {
     await setColor(e)
-    console.log("syles line 118", style.values)
+    console.log('syles line 118', style.values)
     let tempLogo = style.values.map(logo => {
       return { ...logo, colorValue: generateUrlString(logo.value) }
     })
@@ -153,8 +155,8 @@ function Configurator(props) {
     })
     if (!bool) {
       if (!filtered[0]) {
-        openNotification(e);
-        props.isAllGone();
+        openNotification(e)
+        props.isAllGone()
       } else {
         setStyle(filtered[0].value)
       }
@@ -169,9 +171,9 @@ function Configurator(props) {
         isMobile
           ? {}
           : {
-            float: props.current == 2 ? 'left' : 'none',
-            width: props.current == 2 ? '70%' : '100%',
-          }
+              float: props.current == 2 ? 'left' : 'none',
+              width: props.current == 2 ? '70%' : '100%',
+            }
       }
     >
       <div className='content-center'>
